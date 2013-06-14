@@ -1,0 +1,108 @@
+# depslib dependency file v1.0
+1370789876 source:e:\users\david\documents\github\astarcpp\main.cpp
+	<iostream>
+	"Game.hpp"
+	"UnitTest++.h"
+
+1370725632 source:e:\users\david\documents\github\astarcpp\src\manager.cpp
+	"Manager.hpp"
+
+1370740775 e:\users\david\documents\github\astarcpp\include\manager.hpp
+	<SFML/System.hpp>
+
+1370818255 source:e:\users\david\documents\github\astarcpp\src\tilemanager.cpp
+	"TileManager.hpp"
+	<vector>
+	<sstream>
+	"Tile.hpp"
+	<iostream>
+	"Scene.hpp"
+	"TileGraphic.hpp"
+
+1370821146 e:\users\david\documents\github\astarcpp\include\tilemanager.hpp
+	"Manager.hpp"
+	<vector>
+	<memory>
+	<SFML/Graphics.hpp>
+
+1370735357 source:e:\users\david\documents\github\astarcpp\src\pathnode.cpp
+	"PathNode.hpp"
+
+1370735327 e:\users\david\documents\github\astarcpp\include\pathnode.hpp
+
+1370820158 source:e:\users\david\documents\github\astarcpp\src\tile.cpp
+	"Tile.hpp"
+	"GameObject.hpp"
+	<assert.h>
+	"TileManager.hpp"
+
+1370810412 e:\users\david\documents\github\astarcpp\include\tile.hpp
+	"PathNode.hpp"
+
+1370736133 source:e:\dev\davidcpp\src\controller.cpp
+	"DavidH/Controller.hpp"
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+	<iostream>
+
+1370812197 e:\users\david\documents\github\astarcpp\include\game.hpp
+	"DavidH/Controller.hpp"
+	<SFML/Graphics.hpp>
+
+1370818993 source:e:\users\david\documents\github\astarcpp\src\game.cpp
+	"Game.hpp"
+	"TileManager.hpp"
+	<SFML/Graphics.hpp>
+	"Scene.hpp"
+	"Time.hpp"
+
+1370817205 source:e:\users\david\documents\github\astarcpp\src\gameobject.cpp
+	"GameObject.hpp"
+	"Scene.hpp"
+	<assert.h>
+	<iostream>
+
+1370817427 e:\users\david\documents\github\astarcpp\include\gameobject.hpp
+	<SFML/Graphics.hpp>
+	<list>
+	<string>
+	<iostream>
+
+1370818415 source:e:\users\david\documents\github\astarcpp\src\scene.cpp
+	"Scene.hpp"
+	"UnitTest++.h"
+	<algorithm>
+	<assert.h>
+	<iostream>
+	<sstream>
+
+1370818424 e:\users\david\documents\github\astarcpp\include\scene.hpp
+	"Manager.hpp"
+	"GameObject.hpp"
+	"TileGraphic.hpp"
+	<vector>
+	<memory>
+	<string>
+
+1370736133 source:e:\users\david\documents\github\astarcpp\src\controller.cpp
+	"DavidH/Controller.hpp"
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+	<iostream>
+
+1370821156 source:e:\users\david\documents\github\astarcpp\src\tilegraphic.cpp
+	"TileGraphic.hpp"
+	<iostream>
+	"Time.hpp"
+	"TileManager.hpp"
+
+1370818595 e:\users\david\documents\github\astarcpp\include\tilegraphic.hpp
+	"GameObject.hpp"
+	<SFML/Graphics.hpp>
+
+1370819030 e:\users\david\documents\github\astarcpp\include\time.hpp
+	<SFML/System.hpp>
+
+1365018207 source:e:\users\david\documents\github\astarcpp\src\time.cpp
+	"Time.hpp"
+

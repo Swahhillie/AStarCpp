@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="AStarCpp" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="AStarCpp" prefix_auto="1" extension_auto="1" />
+				<Option object_output="E:/Users/David/Documents/GitHub/AStarCpp/.objs" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="release/AStarCpp" prefix_auto="1" extension_auto="1" />
+				<Option object_output="E:/Users/David/Documents/GitHub/AStarCpp/.objs" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="$exe_output" />
+					<Mode after="always" />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add option="-DSFML_STATIC" />
+			<Add directory="include" />
+		</Compiler>
+		<Linker>
+			<Add library="sfml-graphics-s" />
+			<Add library="sfml-window-s" />
+			<Add library="sfml-system-s" />
+			<Add library="UnitTest++" />
+		</Linker>
+		<Unit filename="include/Game.hpp" />
+		<Unit filename="include/GameObject.hpp" />
+		<Unit filename="include/Manager.hpp" />
+		<Unit filename="include/PathNode.hpp" />
+		<Unit filename="include/Scene.hpp" />
+		<Unit filename="include/Tile.hpp" />
+		<Unit filename="include/TileGraphic.hpp" />
+		<Unit filename="include/TileManager.hpp" />
+		<Unit filename="include/Time.hpp" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/Controller.cpp" />
+		<Unit filename="src/Game.cpp" />
+		<Unit filename="src/GameObject.cpp" />
+		<Unit filename="src/Manager.cpp" />
+		<Unit filename="src/PathNode.cpp" />
+		<Unit filename="src/Scene.cpp" />
+		<Unit filename="src/Tile.cpp" />
+		<Unit filename="src/TileGraphic.cpp" />
+		<Unit filename="src/TileManager.cpp" />
+		<Unit filename="src/Time.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
