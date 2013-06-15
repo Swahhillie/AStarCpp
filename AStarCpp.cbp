@@ -44,6 +44,7 @@
 			<Add library="sfml-system-s" />
 			<Add library="UnitTest++" />
 		</Linker>
+		<Unit filename="include/Controller.hpp" />
 		<Unit filename="include/Game.hpp" />
 		<Unit filename="include/GameObject.hpp" />
 		<Unit filename="include/Manager.hpp" />

@@ -2,6 +2,7 @@
 #include "TileManager.hpp"
 #include <SFML/Graphics.hpp>
 #include "Scene.hpp"
+#include "TileManager.hpp"
 #include "Time.hpp"
 
 Game::Game():
@@ -10,7 +11,9 @@ Game::Game():
 	scene_(Scene::instance())
 {
 	//ctor
-	scene_.window_ = &window_;
+	scene_.setWindow(&window_);
+	managers_.push_back(&Scene::instance());
+	managers_.push_back(&TileManager::instance());
 	build();
 }
 
@@ -21,7 +24,7 @@ Game::~Game()
 
 void Game::build()
 {
-	TileManager & tileManager = TileManager::instance();
+	TileManager::instance();
 }
 
 void Game::run()
@@ -30,8 +33,14 @@ void Game::run()
 	{
 		Time::update();
 		controller_.update();
-		scene_.update();
+		for(auto * manager : managers_)manager->preUpdate();
+		for(auto * manager : managers_)manager->update();
+		for(auto * manager : managers_)manager->lateUpdate();
+		for(auto * manager : managers_)manager->onPreRender();
 		scene_.draw();
+		for(auto * manager : managers_)manager->onPostRender();
 
 	}
 }
+
+

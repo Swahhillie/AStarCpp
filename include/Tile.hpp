@@ -2,18 +2,26 @@
 #define TILE_H
 
 #include "PathNode.hpp"
+#include <SFML/graphics.hpp>
+class TileGraphic;
 class GameObject;
 
 class Tile : public PathNode
 {
 	public:
-		Tile(int column, int row, GameObject * go);
+		Tile(int column, int row, TileGraphic * go);
 		virtual ~Tile();
 
+//DEBUG ONLY
+		void setColor(const sf::Color & color);
 	protected:
+
+
 	private:
 
-		GameObject * go_;
+		TileGraphic * go_;
+
+
 
 };
 

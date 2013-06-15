@@ -63,7 +63,9 @@ void Scene::cleanup()
 void Scene::draw()
 {
 	window_->clear();
+	window_->setView(view_);
 	root_->ghostDraw(*window_, sf::RenderStates::Default);
+	window_->setView(window_->getDefaultView());
 	window_->display();
 }
 template<typename Func>
@@ -121,21 +123,22 @@ TEST(creationGetsDestroyed)
 {
 	Scene & scene = Scene::instance();
 	//make sure the scene is currently empty
-	assert(scene.getObjectCount() == 0);
+	auto initialObjectCount = scene.getObjectCount();
+
 	auto * obj1 = scene.createGameObject<GameObject>("obj1");
-	assert(scene.getObjectCount() == 1); // must have been added
+	assert(scene.getObjectCount() == initialObjectCount + 1); // must have been added
 	GameObject::destroy(obj1);
-	assert(scene.getObjectCount() == 1); // cannot yet be destroyed
+	assert(scene.getObjectCount() == initialObjectCount + 1); // cannot yet be destroyed
 	scene.cleanup();
-	CHECK_EQUAL(0, scene.getObjectCount()); // must be destroyed and removed
+	CHECK_EQUAL(initialObjectCount, scene.getObjectCount()); // must be destroyed and removed
 }
 TEST(childrenGetDeletedWithParent)
 {
 
 
 	Scene & scene = Scene::instance();
-	//make sure the scene is currently empty
-	assert(scene.getObjectCount() == 0);
+
+	auto initialObjectCount = scene.getObjectCount();
 
 	auto * parent = scene.createGameObject<GameObject>("grandpa");
 	assert(parent->getChildren().size() == 0);
@@ -148,7 +151,7 @@ TEST(childrenGetDeletedWithParent)
 	//std::cout << "parent has " << parent->getChildren().size() << " children " << std::endl;
 	GameObject::destroy(parent);
 	scene.cleanup();
-	CHECK(scene.getObjectCount() == 0);
+	CHECK(scene.getObjectCount() == initialObjectCount);
 }
 
 TEST(nestedChildrenDeletedWithParent)
@@ -157,8 +160,8 @@ TEST(nestedChildrenDeletedWithParent)
 
 	int amount = 5;
 	Scene & scene = Scene::instance();
-	//make sure the scene is currently empty
-	assert(scene.getObjectCount() == 0);
+
+	auto initialObjectCount = scene.getObjectCount();
 
 	GameObject * grandparent = scene.createGameObject<GameObject>("grandpa");
 	GameObject * parent = grandparent;
@@ -173,9 +176,9 @@ TEST(nestedChildrenDeletedWithParent)
 	}
 
 
-	assert(scene.getObjectCount() == amount + 1); //children + the grandparent
+	assert(scene.getObjectCount() == initialObjectCount + amount + 1); //whatever was already there + children + the grandparent
 	//std::cout << "Grandpa has " << grandparent->getChildren().size() << " children " << std::endl;
 	GameObject::destroy(grandparent);
 	scene.cleanup();
-	CHECK(scene.getObjectCount() == 0);
+	CHECK(scene.getObjectCount() == initialObjectCount);
 }

@@ -1,4 +1,4 @@
-#include "DavidH/Controller.hpp"
+#include "Controller.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <iostream>
@@ -92,7 +92,7 @@ void Controller::update()
     {
         handleEvent(event);
     }
-    mousePosition = glm::vec2(sf::Mouse::getPosition(window_).x, sf::Mouse::getPosition(window_).y);
+    mousePosition = sf::Mouse::getPosition(window_);
     //update is used for continuos events suchs when a key is held down.
 }
 void Controller::refresh()
@@ -137,7 +137,7 @@ bool Controller::getButtonDown(sf::Mouse::Button button)
     return instance->lastButtons[button] == false && instance->pressedButtons[button] == true;
 }
 
-glm::vec2 Controller::getDeltaMouse()
+sf::Vector2i Controller::getDeltaMouse()
 {
     return lastMousePosition - mousePosition;
 }
@@ -152,5 +152,5 @@ bool Controller::getTextEntered(std::string & input)
     else return false;
 }
 Controller * Controller::instance;
-glm::vec2 Controller::mousePosition;
-glm::vec2 Controller::lastMousePosition;
+sf::Vector2i Controller::mousePosition;
+sf::Vector2i Controller::lastMousePosition;

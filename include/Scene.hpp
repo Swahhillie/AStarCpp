@@ -44,16 +44,21 @@ class Scene : public Manager
 
 		void cleanup();
 	protected:
+		virtual void update();
 	private:
 		Scene();
 
 
-		void update();
+
 		void draw();
 
 		sf::RenderWindow * window_;
+		void setWindow(sf::RenderWindow * window){window_ = window; view_ = window_->getDefaultView();}
 		GameObject * root_;
 		std::vector<GameObject*> gameObjects_;
+
+		sf::View view_;
+
 
 /** \brief Find GameoOjects by predicate
  *
