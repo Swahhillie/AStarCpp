@@ -11,14 +11,16 @@ class TileGraphic : public GameObject
 	public:
 		TileGraphic(std::string name);
 		virtual ~TileGraphic();
+
+		void setText(std::string txt){debugText_.setString(txt);}
 	protected:
 		virtual void update();
 		virtual void draw(sf::RenderTarget & target, sf::RenderStates states)const;
 	private:
-		sf::Text debugText;
-		sf::RectangleShape rectangle;
+		sf::Text debugText_;
+		sf::RectangleShape rectangle_;
 
-		static sf::Font debugTextFont;
+		static sf::Font debugTextFont_;
 };
 
 #endif // TILEGRAPHIC_HPP

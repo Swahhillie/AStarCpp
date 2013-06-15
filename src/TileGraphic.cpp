@@ -10,20 +10,20 @@ TileGraphic::TileGraphic(std::string name)
 	//ctor
 
 	sf::Vector2f tileSize = TileManager::getTileSize();
-	rectangle.setSize(tileSize);
-	rectangle.setOutlineColor(sf::Color::Red);
-	rectangle.setOutlineThickness(1.0f);
+	rectangle_.setSize(tileSize);
+	rectangle_.setOutlineColor(sf::Color::Red);
+	rectangle_.setOutlineThickness(1.0f);
 
 	static bool initializedFont = false;
 	if(!initializedFont)
 	{
-		bool result = debugTextFont.loadFromFile("assets/arial.ttf"); assert(result);
+		bool result = debugTextFont_.loadFromFile("assets/arial.ttf"); assert(result);
 		initializedFont = true;
 
 	}
-	debugText.setFont(debugTextFont);
-	debugText.setCharacterSize(10);
-	debugText.setColor(sf::Color::Red);
+	debugText_.setFont(debugTextFont_);
+	debugText_.setCharacterSize(9);
+	debugText_.setColor(sf::Color::Red);
 
 }
 
@@ -33,11 +33,11 @@ TileGraphic::~TileGraphic()
 }
 void TileGraphic::draw(sf::RenderTarget & target, sf::RenderStates states)const
 {
-	target.draw(rectangle, states);
-	target.draw(debugText, states);
+	target.draw(rectangle_, states);
+	target.draw(debugText_, states);
 }
 void TileGraphic::update()
 {
 
 }
-sf::Font TileGraphic::debugTextFont;
+sf::Font TileGraphic::debugTextFont_;

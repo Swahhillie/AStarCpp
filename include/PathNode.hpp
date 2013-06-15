@@ -3,18 +3,28 @@
 
 #include <vector>
 #include <SFML/Graphics.hpp>
-class PathNode
+#include <SFML/System.hpp>
+class Tile;
+
+class PathNode : sf::NonCopyable
 {
 	public:
 		PathNode(int x, int y);
 		virtual ~PathNode();
 
-		int get_x(){return coordinates_.x;}
-		int get_y(){return coordinates_.y;}
+		int get_x()const{return coordinates_.x;}
+		int get_y()const{return coordinates_.y;}
 		sf::Vector2i getCoordinates()const{return coordinates_;}
 
-		std::vector<sf::Vector2i> getDirectNeighbours();
-		std::vector<sf::Vector2i> getAllNeighbours();
+		std::vector<Tile*> getDirectNeighbours()const;
+		std::vector<Tile*> getAllNeighbours()const;
+
+		float g_;
+		float h_;
+		float f_;
+		PathNode * parentNode_;
+
+		virtual bool traversable()const{return true;}
 	protected:
 	private:
 

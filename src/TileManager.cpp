@@ -8,6 +8,7 @@
 #include "Controller.hpp"
 #include "UnitTest++.h"
 #include <assert.h>
+#include "Pathfinder.hpp"
 
 TileManager::TileManager():
     columns_(30),
@@ -58,7 +59,7 @@ void TileManager::generateTiles()
         {
             auto * go = scene.createGameObject<TileGraphic>("Tile");
             go->setParent(tileHolder_);
-            tiles_[i][j] = std::unique_ptr<Tile>(new Tile(i, j, go));
+            tiles_[i][j] = new Tile(i, j, go);
         }
     }
 
@@ -82,29 +83,80 @@ void TileManager::generateTiles()
 }
 void TileManager::update()
 {
-	//the mouse in the window.
-	sf::Vector2i mousePos = Controller::mousePosition;
-	//transform the mouse position in to tile space
-	sf::Vector2f transformedPosition = tileHolder_->getTransform().getInverse().transformPoint(mousePos.x, mousePos.y);
+    static Tile * clicked = nullptr;
 
-	sf::Vector2i coordinates = sf::Vector2i(transformedPosition.x / getTileSize().x, transformedPosition.y / getTileSize().y);
+    //the mouse in the window.
+    sf::Vector2i mousePos = Controller::mousePosition;
+    //transform the mouse position in to tile space
+    sf::Vector2f transformedPosition = tileHolder_->getTransform().getInverse().transformPoint(mousePos.x, mousePos.y);
 
-	if(coordinatesAreIn(coordinates)){
-		for(auto coord : getTile(coordinates).getAllNeighbours()){
-			getTile(coord).setColor(sf::Color::Red);
-			coloredTileCoordinates_.push_back(coord);
-		}
-	}
+    sf::Vector2i coordinates = sf::Vector2i(transformedPosition.x / getTileSize().x, transformedPosition.y / getTileSize().y);
+
+    if(coordinatesAreIn(coordinates))
+    {
+        if(Controller::getButton(sf::Mouse::Button::Right))
+        {
+            for(auto * tile : getTile(coordinates)->getAllNeighbours())
+            {
+                tile->setColor(sf::Color::Red);
+                tile->setText("");
+                coloredTiles_.push_back(tile);
+            }
+        }
+
+        if(Controller::getButtonDown(sf::Mouse::Button::Left))
+        {
+            clicked = getTile(coordinates);
+        }
+        else if(Controller::getButtonUp(sf::Mouse::Button::Left) && clicked != nullptr)
+        {
+            TileManager::instance().forEachTile([](Tile & tile)
+            {
+                tile.g_ = 0;
+                tile.h_ =0;
+                tile.f_=0;
+            });
+
+            auto path = Pathfinder::instance().getPath(clicked->getCoordinates(), coordinates);
+            clicked = nullptr;
+
+
+
+            auto steps = path.size();
+
+            TileManager::instance().forEachTile([&](Tile & tile)
+            {
+                float r = 255 - tile.g_;
+                float g = 255 - tile.f_;
+                float b = 255 - tile.h_;
+                std::stringstream sstream;
+
+                sstream << tile.g_ << "\n" << tile.h_ << "\n" << tile.f_;
+                tile.setText(sstream.str());
+                tile.setColor(sf::Color(r, g, b));
+            }
+                                               );
+
+            for(auto * pn : path)
+            {
+                auto * tile = static_cast<Tile*>(pn);
+
+				tile->setColor(sf::Color::Yellow);
+                //coloredTiles_.push_back(tile);
+            }
+
+        }
+    }
 
 }
 
 void TileManager::onPostRender()
 {
-	for(auto coord : coloredTileCoordinates_)
-	{
-		getTile((coord)).setColor(sf::Color::White);
-	}
-	coloredTileCoordinates_.clear();
+    for(auto * tile : coloredTiles_)
+    {
+        tile->setColor(sf::Color::White);
+    }
+    coloredTiles_.clear();
 }
 //check if the top left node has 2 neighbours
 TEST(testPathnodeNeighbourCount)
@@ -129,19 +181,17 @@ TEST(testPathnodeNeighbourIsActual)
     assert(tileManager.getColumns() > 1 && tileManager.getRows() > 1);
 
     auto & tiles = tileManager.getTiles();
-    auto & tile0 = *(tiles[0][0]);
+    auto * tile0 = tiles[0][0];
 
-    auto & neighbourRight = *(tiles[1][0]);
-    auto & neighbourDown = *(tiles[0][1]);
+    auto * neighbourRight = tiles[1][0];
+    auto * neighbourDown = tiles[0][1];
 
-    auto neighbourCoordinates = tile0.getDirectNeighbours();
+    auto neighbours = tile0->getDirectNeighbours();
 
-    assert(neighbourCoordinates.size() == 2u);
+    assert(neighbours.size() == 2u);
 
-    auto rightCoordinates = neighbourRight.getCoordinates();
-    auto downCoordinates = neighbourDown.getCoordinates();
-    CHECK(neighbourCoordinates[0] == rightCoordinates);
-    CHECK(neighbourCoordinates[1] == downCoordinates);
+    CHECK(neighbours[0] == neighbourRight);
+    CHECK(neighbours[1] == neighbourDown);
     //CHECK_ARRAY_EQUAL(tile0actualNeighbours, tile0expectedNeighbours);
 
 }
@@ -163,26 +213,29 @@ TEST(xyAlwaysTheSameAsCoordinates)
 
 TEST(forEachTileHitsAllTiles)
 {
-	//walk over all neighbours  and check if the neighbours are valid positions
+    //walk over all neighbours  and check if the neighbours are valid positions
 
-	TileManager & tileManager = TileManager::instance();
-	auto tileCount = 0;
-	tileManager.forEachTile([&](Tile & tile){
-							tileCount++;
-							});
+    TileManager & tileManager = TileManager::instance();
+    auto tileCount = 0;
+    tileManager.forEachTile([&](Tile & tile)
+    {
+        tileCount++;
+    });
 
-	CHECK_EQUAL(tileCount, tileManager.getColumns() * tileManager.getRows());
+    CHECK_EQUAL(tileCount, tileManager.getColumns() * tileManager.getRows());
 
 }
 TEST(accessAllTiles)
 {
-	TileManager & tileManager = TileManager::instance();
+    TileManager & tileManager = TileManager::instance();
 
-	tileManager.forEachTile([](Tile & tile){
-							tile.setColor(sf::Color::Yellow);
-							});
-	tileManager.forEachTile([](Tile & tile){
-							tile.setColor(sf::Color::White);
-							});
+    tileManager.forEachTile([](Tile & tile)
+    {
+        tile.setColor(sf::Color::Yellow);
+    });
+    tileManager.forEachTile([](Tile & tile)
+    {
+        tile.setColor(sf::Color::White);
+    });
 }
 

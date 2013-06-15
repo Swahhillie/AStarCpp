@@ -13,10 +13,6 @@ Tile::Tile(int x, int y, TileGraphic * go) : PathNode(x, y),
 	sf::Vector2f tileSize = TileManager::getTileSize();
 	go_->setPosition(tileSize.x * x, tileSize.y * y);
 
-
-	std::stringstream sstream;
-	sstream << get_x() << "," << get_y();
-	go_->debugText.setString(sstream.str());
 }
 
 Tile::~Tile()
@@ -25,5 +21,6 @@ Tile::~Tile()
 }
 void Tile::setColor(const sf::Color & color)
 {
-	go_->rectangle.setFillColor(color);
+	go_->rectangle_.setFillColor(color);
 }
+void Tile::setText(std::string text){go_->setText(text);}

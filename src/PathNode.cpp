@@ -6,6 +6,10 @@
 #include "Tile.hpp"
 
 PathNode::PathNode(int x, int y):
+	g_(0),
+	h_(0),
+	f_(0),
+	parentNode_(nullptr),
     coordinates_(sf::Vector2u(x, y)),
     x_(coordinates_.x),
     y_(coordinates_.y)
@@ -17,33 +21,34 @@ PathNode::~PathNode()
 {
     //dtor
 }
-std::vector<sf::Vector2i> PathNode::getDirectNeighbours()
+std::vector<Tile *> PathNode::getDirectNeighbours()const
 {
     //direct connections
-    std::vector<sf::Vector2i> neighbours;
+    std::vector<Tile *> neighbours;
     TileManager & tileManager = TileManager::instance();
+    auto & tiles = tileManager.getTiles();
 
     if(x_ > 0)
     {
-        neighbours.push_back(sf::Vector2i(x_-1,y_));
+        neighbours.push_back(tiles[x_-1][y_]);
     }
     if(x_ + 1 < tileManager.getColumns())
     {
-        neighbours.push_back(sf::Vector2i(x_+1,y_));
+        neighbours.push_back(tiles[x_+1][y_]);
     }
     if(y_ > 0)
     {
-        neighbours.push_back(sf::Vector2i(x_,y_-1));
+        neighbours.push_back(tiles[x_][y_-1]);
     }
     if(y_ + 1 < tileManager.getRows())
     {
-        neighbours.push_back(sf::Vector2i(x_,y_+1));
+        neighbours.push_back(tiles[x_][y_+1]);
     }
     return neighbours;
 }
-std::vector<sf::Vector2i> PathNode::getAllNeighbours()
+std::vector<Tile*> PathNode::getAllNeighbours()const
 {
-	std::vector<sf::Vector2i> neighbours;
+	std::vector<Tile*> neighbours;
 	TileManager& tileManager = TileManager::instance();
 	/*
 	for(auto i = 0; i < 9; i++)
@@ -61,7 +66,7 @@ std::vector<sf::Vector2i> PathNode::getAllNeighbours()
 	for(auto y = y_ -1; y < y_ + 2; y++){
 		if(tileManager.coordinatesAreIn(x, y))
 		{
-			neighbours.push_back(sf::Vector2i(x, y));
+			neighbours.push_back(tileManager.getTile(x,y));
 		}
 	}
 	return neighbours;

@@ -10,7 +10,7 @@
 1371245938 e:\users\david\documents\github\astarcpp\include\manager.hpp
 	<SFML/System.hpp>
 
-1371250331 source:e:\users\david\documents\github\astarcpp\src\tilemanager.cpp
+1371327328 source:e:\users\david\documents\github\astarcpp\src\tilemanager.cpp
 	"TileManager.hpp"
 	<vector>
 	<sstream>
@@ -21,14 +21,15 @@
 	"Controller.hpp"
 	"UnitTest++.h"
 	<assert.h>
+	"Pathfinder.hpp"
 
-1371250141 e:\users\david\documents\github\astarcpp\include\tilemanager.hpp
+1371319146 e:\users\david\documents\github\astarcpp\include\tilemanager.hpp
 	"Manager.hpp"
 	<vector>
 	<memory>
 	<SFML/Graphics.hpp>
 
-1371249532 source:e:\users\david\documents\github\astarcpp\src\pathnode.cpp
+1371326940 source:e:\users\david\documents\github\astarcpp\src\pathnode.cpp
 	"PathNode.hpp"
 	"Scene.hpp"
 	"TileManager.hpp"
@@ -36,11 +37,12 @@
 	"UnitTest++.h"
 	"Tile.hpp"
 
-1371248345 e:\users\david\documents\github\astarcpp\include\pathnode.hpp
+1371326578 e:\users\david\documents\github\astarcpp\include\pathnode.hpp
 	<vector>
 	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
 
-1371219353 source:e:\users\david\documents\github\astarcpp\src\tile.cpp
+1371320332 source:e:\users\david\documents\github\astarcpp\src\tile.cpp
 	"Tile.hpp"
 	"GameObject.hpp"
 	<assert.h>
@@ -48,7 +50,7 @@
 	"TileGraphic.hpp"
 	<sstream>
 
-1371219076 e:\users\david\documents\github\astarcpp\include\tile.hpp
+1371320321 e:\users\david\documents\github\astarcpp\include\tile.hpp
 	"PathNode.hpp"
 	<SFML/graphics.hpp>
 
@@ -104,14 +106,14 @@
 	<SFML/System.hpp>
 	<iostream>
 
-1371217663 source:e:\users\david\documents\github\astarcpp\src\tilegraphic.cpp
+1371324522 source:e:\users\david\documents\github\astarcpp\src\tilegraphic.cpp
 	"TileGraphic.hpp"
 	<iostream>
 	"Time.hpp"
 	"TileManager.hpp"
 	<assert.h>
 
-1371217319 e:\users\david\documents\github\astarcpp\include\tilegraphic.hpp
+1371320189 e:\users\david\documents\github\astarcpp\include\tilegraphic.hpp
 	"GameObject.hpp"
 	<SFML/Graphics.hpp>
 
@@ -124,4 +126,30 @@
 1371230662 e:\users\david\documents\github\astarcpp\include\controller.hpp
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
+
+1371329899 source:e:\users\david\documents\github\astarcpp\src\pathfinder.cpp
+	"Pathfinder.hpp"
+	<list>
+	"TileManager.hpp"
+	"Tile.hpp"
+	"UnitTest++.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	<assert.h>
+
+1371330028 e:\users\david\documents\github\astarcpp\include\pathfinder.hpp
+	<SFML/System.hpp>
+	<list>
+	"PathfinderSettings.hpp"
+
+1371329796 e:\users\david\documents\github\astarcpp\include\pathfindersettings.hpp
+	<functional>
+	<vector>
+
+1371329751 source:e:\users\david\documents\github\astarcpp\src\pathfindersettings.cpp
+	"PathfinderSettings.hpp"
+	"Tile.hpp"
+	"Pathfinder.hpp"
+	<assert.h>
 
