@@ -45,15 +45,13 @@ class Scene : public Manager
 		void cleanup();
 	protected:
 		virtual void update();
+		virtual void preRender(sf::RenderWindow & window);
+		virtual void draw(sf::RenderWindow & window);
+		virtual void lateDraw(sf::RenderWindow & window);
 	private:
 		Scene();
 
 
-
-		void draw();
-
-		sf::RenderWindow * window_;
-		void setWindow(sf::RenderWindow * window){window_ = window; view_ = window_->getDefaultView();}
 		GameObject * root_;
 		std::vector<GameObject*> gameObjects_;
 

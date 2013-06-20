@@ -9,6 +9,7 @@
 #include "UnitTest++.h"
 #include <assert.h>
 #include "Pathfinder.hpp"
+#include "Random.hpp"
 
 TileManager::TileManager():
     columns_(30),
@@ -81,6 +82,14 @@ void TileManager::generateTiles()
     */
 
 }
+void TileManager::cleanMap()
+{
+	forEachTile([](Tile & tile){tile.setTraversable(true);});
+}
+void TileManager::generateWalls(float percentage)
+{
+	forEachTile([](Tile & tile){tile.setTraversable(Random::inRange(0.f, 100.0f) > 0);});
+}
 void TileManager::update()
 {
     static Tile * clicked = nullptr;
@@ -94,15 +103,26 @@ void TileManager::update()
 
     if(coordinatesAreIn(coordinates))
     {
+    	//the tile that the mouse is currently hovering over
+        Tile * hoverTile = getTile(coordinates);
+        assert(hoverTile != nullptr);
         if(Controller::getButton(sf::Mouse::Button::Right))
         {
-            for(auto * tile : getTile(coordinates)->getAllNeighbours())
+            for(auto * tile : hoverTile->getAllNeighbours())
             {
                 tile->setColor(sf::Color::Red);
                 tile->setText("");
                 coloredTiles_.push_back(tile);
             }
         }
+
+        if(Controller::getButton(sf::Mouse::Button::Middle))
+		{
+			if(Controller::getKey(sf::Keyboard::Key::LShift))hoverTile->setTraversable(true);
+			else hoverTile->setTraversable(false);
+			hoverTile->recolor();
+		}
+
 
         if(Controller::getButtonDown(sf::Mouse::Button::Left))
         {
@@ -113,31 +133,33 @@ void TileManager::update()
             TileManager::instance().forEachTile([](Tile & tile)
             {
                 tile.g_ = 0;
-                tile.h_ =0;
-                tile.f_=0;
+                tile.h_ = 0;
+                tile.f_ = 0;
+                tile.recolor();
+                tile.setText("");
             });
 
-            auto path = Pathfinder::instance().getPath(clicked->getCoordinates(), coordinates);
+            path_ = Pathfinder::instance().getPath(clicked, hoverTile);
             clicked = nullptr;
 
 
 
-            auto steps = path.size();
+         //   auto steps = path.size();
 
             TileManager::instance().forEachTile([&](Tile & tile)
             {
-                float r = 255 - tile.g_;
-                float g = 255 - tile.f_;
-                float b = 255 - tile.h_;
                 std::stringstream sstream;
+				if(tile.f_ > 0)
+				{
+					sstream << tile.g_ << "\n" << tile.h_ << "\n" << tile.f_;
+					tile.setText(sstream.str());
+				}
 
-                sstream << tile.g_ << "\n" << tile.h_ << "\n" << tile.f_;
-                tile.setText(sstream.str());
-                tile.setColor(sf::Color(r, g, b));
+                //tile.setColor(sf::Color(r, g, b));
             }
                                                );
 
-            for(auto * pn : path)
+            for(auto * pn : path_)
             {
                 auto * tile = static_cast<Tile*>(pn);
 
@@ -149,12 +171,32 @@ void TileManager::update()
     }
 
 }
+void TileManager::draw(sf::RenderWindow & window)
+{
+	sf::Vertex points[path_.size()];
+	int i = 0;
+	for(auto * pn : path_){
+		sf::Vertex v = sf::Vector2f(pn->getCoordinates());
 
-void TileManager::onPostRender()
+		v.position *= TileManager::getTileSize().x;
+		v.color = sf::Color::Cyan;
+
+		v.position += sf::Vector2f(TileManager::getTileSize() /2.0f);
+		v.position = tileHolder_->getTransform() * v.position;
+
+		points[i] = v;
+		i++;
+
+	}
+
+
+	window.draw(points, path_.size(), sf::LinesStrip );
+}
+void TileManager::postRender()
 {
     for(auto * tile : coloredTiles_)
     {
-        tile->setColor(sf::Color::White);
+        tile->recolor();
     }
     coloredTiles_.clear();
 }
@@ -206,7 +248,7 @@ TEST(xyAlwaysTheSameAsCoordinates)
         for(auto i = 0u; i < column.size(); i++)
         {
             auto & tile = *column[i];
-            CHECK(sf::Vector2i(tile.get_x(), tile.get_y()) == tile.getCoordinates());
+            CHECK(sf::Vector2i(tile.x_, tile.y_) == tile.getCoordinates());
         }
     }
 }

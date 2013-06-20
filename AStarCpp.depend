@@ -7,10 +7,11 @@
 1370725632 source:e:\users\david\documents\github\astarcpp\src\manager.cpp
 	"Manager.hpp"
 
-1371245938 e:\users\david\documents\github\astarcpp\include\manager.hpp
+1371757297 e:\users\david\documents\github\astarcpp\include\manager.hpp
 	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
 
-1371327328 source:e:\users\david\documents\github\astarcpp\src\tilemanager.cpp
+1371750985 source:e:\users\david\documents\github\astarcpp\src\tilemanager.cpp
 	"TileManager.hpp"
 	<vector>
 	<sstream>
@@ -22,14 +23,16 @@
 	"UnitTest++.h"
 	<assert.h>
 	"Pathfinder.hpp"
+	"Random.hpp"
 
-1371319146 e:\users\david\documents\github\astarcpp\include\tilemanager.hpp
+1371748830 e:\users\david\documents\github\astarcpp\include\tilemanager.hpp
 	"Manager.hpp"
 	<vector>
 	<memory>
 	<SFML/Graphics.hpp>
+	<list>
 
-1371326940 source:e:\users\david\documents\github\astarcpp\src\pathnode.cpp
+1371734705 source:e:\users\david\documents\github\astarcpp\src\pathnode.cpp
 	"PathNode.hpp"
 	"Scene.hpp"
 	"TileManager.hpp"
@@ -37,20 +40,21 @@
 	"UnitTest++.h"
 	"Tile.hpp"
 
-1371326578 e:\users\david\documents\github\astarcpp\include\pathnode.hpp
+1371748407 e:\users\david\documents\github\astarcpp\include\pathnode.hpp
 	<vector>
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
 
-1371320332 source:e:\users\david\documents\github\astarcpp\src\tile.cpp
+1371734705 source:e:\users\david\documents\github\astarcpp\src\tile.cpp
 	"Tile.hpp"
 	"GameObject.hpp"
 	<assert.h>
 	"TileManager.hpp"
 	"TileGraphic.hpp"
 	<sstream>
+	"Random.hpp"
 
-1371320321 e:\users\david\documents\github\astarcpp\include\tile.hpp
+1371732701 e:\users\david\documents\github\astarcpp\include\tile.hpp
 	"PathNode.hpp"
 	<SFML/graphics.hpp>
 
@@ -60,17 +64,18 @@
 	<SFML/System.hpp>
 	<iostream>
 
-1371246256 e:\users\david\documents\github\astarcpp\include\game.hpp
+1371757573 e:\users\david\documents\github\astarcpp\include\game.hpp
 	"Controller.hpp"
 	<SFML/Graphics.hpp>
 
-1371248624 source:e:\users\david\documents\github\astarcpp\src\game.cpp
+1371757598 source:e:\users\david\documents\github\astarcpp\src\game.cpp
 	"Game.hpp"
 	"TileManager.hpp"
 	<SFML/Graphics.hpp>
 	"Scene.hpp"
 	"TileManager.hpp"
 	"Time.hpp"
+	"ScriptManager.hpp"
 
 1370817205 source:e:\users\david\documents\github\astarcpp\src\gameobject.cpp
 	"GameObject.hpp"
@@ -84,7 +89,7 @@
 	<string>
 	<iostream>
 
-1371251527 source:e:\users\david\documents\github\astarcpp\src\scene.cpp
+1371747808 source:e:\users\david\documents\github\astarcpp\src\scene.cpp
 	"Scene.hpp"
 	"UnitTest++.h"
 	<algorithm>
@@ -92,7 +97,7 @@
 	<iostream>
 	<sstream>
 
-1371240065 e:\users\david\documents\github\astarcpp\include\scene.hpp
+1371747881 e:\users\david\documents\github\astarcpp\include\scene.hpp
 	"Manager.hpp"
 	"GameObject.hpp"
 	"TileGraphic.hpp"
@@ -100,7 +105,7 @@
 	<memory>
 	<string>
 
-1371231017 source:e:\users\david\documents\github\astarcpp\src\controller.cpp
+1371752541 source:e:\users\david\documents\github\astarcpp\src\controller.cpp
 	"Controller.hpp"
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
@@ -127,7 +132,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
 
-1371329899 source:e:\users\david\documents\github\astarcpp\src\pathfinder.cpp
+1371750238 source:e:\users\david\documents\github\astarcpp\src\pathfinder.cpp
 	"Pathfinder.hpp"
 	<list>
 	"TileManager.hpp"
@@ -138,18 +143,57 @@
 	<algorithm>
 	<assert.h>
 
-1371330028 e:\users\david\documents\github\astarcpp\include\pathfinder.hpp
+1371330912 e:\users\david\documents\github\astarcpp\include\pathfinder.hpp
 	<SFML/System.hpp>
 	<list>
 	"PathfinderSettings.hpp"
 
-1371329796 e:\users\david\documents\github\astarcpp\include\pathfindersettings.hpp
+1371331153 e:\users\david\documents\github\astarcpp\include\pathfindersettings.hpp
 	<functional>
 	<vector>
 
-1371329751 source:e:\users\david\documents\github\astarcpp\src\pathfindersettings.cpp
+1371743433 source:e:\users\david\documents\github\astarcpp\src\pathfindersettings.cpp
 	"PathfinderSettings.hpp"
 	"Tile.hpp"
 	"Pathfinder.hpp"
 	<assert.h>
+
+1371729920 source:e:\users\david\documents\github\astarcpp\src\random.cpp
+	"Random.hpp"
+	<chrono>
+
+1371729910 e:\users\david\documents\github\astarcpp\include\random.hpp
+	<SFML/System.hpp>
+	<random>
+
+1371764894 e:\users\david\documents\github\astarcpp\include\scriptmanager.hpp
+	"Manager.hpp"
+	<angelscript.h>
+	<scriptstdstring/scriptstdstring.h>
+	<scriptbuilder/scriptbuilder.h>
+	<sstream>
+	<cstdio>
+
+1371767258 source:e:\users\david\documents\github\astarcpp\src\scriptmanager.cpp
+	"ScriptManager.hpp"
+	<SFML/System.hpp>
+	<assert.h>
+
+1371760608 source:e:\users\david\documents\github\astarcpp\src\scriptbuilder.cpp
+	"scriptbuilder\scriptbuilder.h"
+	<vector>
+	<stdio.h>
+	<direct.h>
+	<windows.h>
+	<unistd.h>
+
+1371760631 source:e:\users\david\documents\github\astarcpp\src\scriptstdstring.cpp
+	"scriptstdstring\scriptstdstring.h"
+	<assert.h>
+	<sstream>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<map>
 

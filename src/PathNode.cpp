@@ -5,16 +5,17 @@
 #include "UnitTest++.h"
 #include "Tile.hpp"
 
-PathNode::PathNode(int x, int y):
+PathNode::PathNode(int px, int py):
 	g_(0),
 	h_(0),
 	f_(0),
 	parentNode_(nullptr),
-    coordinates_(sf::Vector2u(x, y)),
-    x_(coordinates_.x),
-    y_(coordinates_.y)
+    coordinates_(sf::Vector2i(px, py)),
+    x_(px),
+    y_(py)
 {
     //ctor
+    //std::cout << "x " << coordinates_.x << ", y " << coordinates_.y << std::endl;
 }
 
 PathNode::~PathNode()
@@ -62,8 +63,8 @@ std::vector<Tile*> PathNode::getAllNeighbours()const
 		}
 	}
 	*/
-	for(auto x = x_ -1; x < x_ + 2; x++)
-	for(auto y = y_ -1; y < y_ + 2; y++){
+	for(int x = x_ -1; x < x_ + 2; x++)
+	for(int y = y_ -1; y < y_ + 2; y++){
 		if(tileManager.coordinatesAreIn(x, y))
 		{
 			neighbours.push_back(tileManager.getTile(x,y));
@@ -71,3 +72,4 @@ std::vector<Tile*> PathNode::getAllNeighbours()const
 	}
 	return neighbours;
 }
+

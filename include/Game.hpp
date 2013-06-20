@@ -19,7 +19,6 @@ protected:
 private:
     sf::RenderWindow window_;
     Controller controller_;
-    Scene & scene_;
 
     std::vector<Manager*> managers_;
 

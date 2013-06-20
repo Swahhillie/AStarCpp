@@ -5,7 +5,9 @@
 #include <vector>
 #include <memory>
 #include <SFML/Graphics.hpp>
+#include <list>
 
+class PathNode;
 class Tile;
 class GameObject;
 class TileManager : public Manager
@@ -26,7 +28,7 @@ class TileManager : public Manager
          *
          */
 
-		static sf::Vector2f getTileSize()const{return sf::Vector2f(30,30);}
+		static sf::Vector2f getTileSize(){return sf::Vector2f(30,30);}
 
         /** \brief
          *
@@ -53,7 +55,7 @@ class TileManager : public Manager
 		template<typename T>
 		Tile * getTile(const sf::Vector2<T> & coordinates)const{return tiles_[coordinates.x][coordinates.y];}
 
-		Tile * getTile(int x, int y)const{return tiles_[x][y];}
+		Tile * getTile(int x_, int y)const{return tiles_[x_][y];}
 
 		template<typename T>
 		bool coordinatesAreIn(const sf::Vector2<T> & toCheck)const
@@ -61,9 +63,9 @@ class TileManager : public Manager
 			return (toCheck.x >= 0 && toCheck.x < columns_ && toCheck.y >= 0 && toCheck.y < rows_);
 		}
 
-		bool coordinatesAreIn(int x, int y)const
+		bool coordinatesAreIn(int x_, int y)const
 		{
-			return (x >= 0 && x < columns_ && y >= 0 && y < rows_);
+			return (x_ >= 0 && x_ < columns_ && y >= 0 && y < rows_);
 		}
         /** \brief Call a function on all Tiles
          *
@@ -85,10 +87,29 @@ class TileManager : public Manager
 				}
 			}
 		}
+		/** \brief Make all tiles in the map traversable
+		 * This is used for some unit tests.
+		 * \param
+		 * \param
+		 * \return
+		 *
+		 */
 
+		void cleanMap(); // sets all tile to traversable
+
+        /** \brief Make a percentage of all tiles non traversable.
+         *
+         * \param percentage of tiles that should be turned in to non traversable. 0 = all tiles traversable. 100 = all tiles blocked
+         * \param
+         * \return
+         *
+         */
+
+		void generateWalls(float percentage = 0); // adds non traversable tiles to the map
 	protected:
 		virtual void update();
-		virtual void onPostRender();
+		virtual void draw(sf::RenderWindow & window);
+		virtual void postRender();
 	private:
 
 		//constructors
@@ -108,6 +129,7 @@ class TileManager : public Manager
 		GameObject * tileHolder_;
 
 		std::vector<Tile*> coloredTiles_;
+		std::list<PathNode*> path_;
 
 };
 

@@ -9,7 +9,7 @@ PathfinderSettings::PathfinderSettings():
     travelCost_(1.0f),
     heuristicCost_(1.0f),
     tieBreak_(TieBreak::Cross),
-    heuristicFunction_(&Pathfinder::manhattenHeuristic),
+    heuristicFunction_(&Pathfinder::diagonalHeuristic),
     nodeFinder_(&PathNode::getAllNeighbours)
 {
 }

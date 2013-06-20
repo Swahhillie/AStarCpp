@@ -53,7 +53,8 @@ std::list<PathNode*> Pathfinder::getPath(PathNode * firstNode, PathNode * destin
 
     std::list<PathNode*> path;
 
-    if(destinationNode->traversable() == false)
+	//both these options will lead to a full search of the grid. early out
+    if(!destinationNode->traversable() ||  !firstNode->traversable())
     {
 
         return path;
@@ -71,7 +72,8 @@ std::list<PathNode*> Pathfinder::getPath(PathNode * firstNode, PathNode * destin
             if(testNode == currentNode) continue;
 
 
-            g = currentNode->g_ + settings_.heuristicFunction_(currentNode, testNode, settings_.travelCost_);
+            g = currentNode->g_ + settings_.heuristicFunction_(currentNode, testNode, settings_.travelCost_); // the cost to make a step
+            g += testNode->getTravelCost();
             h = settings_.heuristicFunction_(testNode, destinationNode, settings_.heuristicCost_);
 
             //straight up tiebreak
@@ -79,11 +81,11 @@ std::list<PathNode*> Pathfinder::getPath(PathNode * firstNode, PathNode * destin
             else if(settings_.tieBreak_ == PathfinderSettings::TieBreak::Cross)
             {
                 //cross product tiebreak
-                auto dx1 = currentNode->get_x() - destinationNode->get_x();
-                auto dy1 = currentNode->get_y() - destinationNode->get_y();
+                auto dx1 = currentNode->x_ - destinationNode->x_;
+                auto dy1 = currentNode->y_ - destinationNode->y_;
 
-                auto dx2 = firstNode->get_x() - destinationNode->get_x();
-                auto dy2 = firstNode->get_y() - destinationNode->get_y();
+                auto dx2 = firstNode->x_ - destinationNode->x_;
+                auto dy2 = firstNode->y_ - destinationNode->y_;
                 auto cross = abs(dx1 * dy2 - dx2 * dy1);
                 h += cross * settings_.tieBreakAmount_;
             }
@@ -135,25 +137,27 @@ std::list<PathNode*> Pathfinder::buildPath(PathNode * destination, PathNode * st
 {
     std::list<PathNode*> path;
     auto * current = destination;
+    path.push_front(destination);
     while(current != start)
     {
         current = current->parentNode_;
         path.push_front(current);
     }
+
     return path;
 }
 float Pathfinder::manhattenHeuristic(const PathNode * start, const PathNode * destination, float cost)
 {
-    auto dx = abs(start->get_x() - destination->get_x());
-    auto dy = abs(start->get_y() - destination->get_y());
+    auto dx = abs(start->x_ - destination->x_);
+    auto dy = abs(start->y_ - destination->y_);
     return (dx + dy) * cost;
 }
 
 float Pathfinder::diagonalHeuristic(const PathNode * start, const PathNode * destination, float cost)
 {
     float cost2 = sqrtf(2.0f) *cost;
-    auto dx = abs(start->get_x() - destination->get_x());
-    auto dy = abs(start->get_y() - destination->get_y());
+    auto dx = abs(start->x_ - destination->x_);
+    auto dy = abs(start->y_ - destination->y_);
     return cost * (dx + dy) + (cost2 - 2 * cost) * std::min(dx, dy);
 
 }
@@ -161,19 +165,19 @@ float Pathfinder::diagonalHeuristic(const PathNode * start, const PathNode * des
 TEST(oneStepPath)
 {
     auto path = Pathfinder::instance().getPath(sf::Vector2i(0,0), sf::Vector2i(1,0));
-    CHECK_EQUAL(1u, path.size());
+    CHECK_EQUAL(2u, path.size());
 }
 
 TEST(tenStepsRightPath)
 {
     auto path = Pathfinder::instance().getPath(sf::Vector2i(0,0), sf::Vector2i(10,0));
-    CHECK_EQUAL(10u, path.size());
+    CHECK_EQUAL(11, path.size());
 }
 
 TEST(tenStepsDown)
 {
     auto path = Pathfinder::instance().getPath(sf::Vector2i(0,0), sf::Vector2i(0,10));
-    CHECK_EQUAL(10u, path.size());
+    CHECK_EQUAL(11u, path.size());
 }
 
 TEST(pathIsStraight)
@@ -181,9 +185,9 @@ TEST(pathIsStraight)
     auto path = Pathfinder::instance().getPath(sf::Vector2i(0,0), sf::Vector2i(10,0));
 
     TileManager & tileManager = TileManager::instance();
-    std::vector<PathNode*> hardPath(10u);
+    std::vector<PathNode*> hardPath(11u);
 
-    for(auto i = 0; i < 10; i++)
+    for(auto i = 0; i < 11; i++)
     {
         hardPath[i] = tileManager.getTile(i, 0);
     }
@@ -207,7 +211,7 @@ TEST(oneRightOneDownDirect)
     pathfinder.getSettings().setConnectedNodes(PathfinderSettings::ConnectedNode::Direct);
     auto path = pathfinder.getPath(sf::Vector2i(0, 0), sf::Vector2i(1,1));
 
-    CHECK_EQUAL(2u, path.size());
+    CHECK_EQUAL(3u, path.size());
 
     //restore old settings
     pathfinder.getSettings() = oldSettings;
@@ -226,6 +230,6 @@ TEST(ghfValues)
     {
         CHECK_CLOSE(pn->g_ + pn->h_, pn->f_, 0.001f);
     }
-    CHECK_EQUAL(10u, path.size());
+    CHECK_EQUAL(11u, path.size());
     pathfinder.getSettings() = oldSettings;
 }

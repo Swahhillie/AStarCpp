@@ -43,6 +43,8 @@
 			<Add library="sfml-window-s" />
 			<Add library="sfml-system-s" />
 			<Add library="UnitTest++" />
+			<Add library="E:\Users\David\Documents\GitHub\AStarCpp\libAngelscriptAddons.a" />
+			<Add library="angelscript" />
 		</Linker>
 		<Unit filename="include/Controller.hpp" />
 		<Unit filename="include/Game.hpp" />
@@ -51,7 +53,9 @@
 		<Unit filename="include/PathNode.hpp" />
 		<Unit filename="include/Pathfinder.hpp" />
 		<Unit filename="include/PathfinderSettings.hpp" />
+		<Unit filename="include/Random.hpp" />
 		<Unit filename="include/Scene.hpp" />
+		<Unit filename="include/ScriptManager.hpp" />
 		<Unit filename="include/Tile.hpp" />
 		<Unit filename="include/TileGraphic.hpp" />
 		<Unit filename="include/TileManager.hpp" />
@@ -64,11 +68,14 @@
 		<Unit filename="src/PathNode.cpp" />
 		<Unit filename="src/Pathfinder.cpp" />
 		<Unit filename="src/PathfinderSettings.cpp" />
+		<Unit filename="src/Random.cpp" />
 		<Unit filename="src/Scene.cpp" />
+		<Unit filename="src/ScriptManager.cpp" />
 		<Unit filename="src/Tile.cpp" />
 		<Unit filename="src/TileGraphic.cpp" />
 		<Unit filename="src/TileManager.cpp" />
 		<Unit filename="src/Time.cpp" />
+		<Unit filename="test.as" />
 		<Extensions>
 			<code_completion />
 			<envvars />

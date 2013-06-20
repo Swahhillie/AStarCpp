@@ -6,7 +6,7 @@
 #include <sstream>
 
 
-Scene::Scene():window_(nullptr)
+Scene::Scene()
 {
 	//ctor
 	root_ = new GameObject("Root");
@@ -59,14 +59,27 @@ void Scene::cleanup()
 
 	}
 }
-
-void Scene::draw()
+void Scene::preRender(sf::RenderWindow & window)
 {
-	window_->clear();
-	window_->setView(view_);
-	root_->ghostDraw(*window_, sf::RenderStates::Default);
-	window_->setView(window_->getDefaultView());
-	window_->display();
+	static bool ini =false;
+	if(!ini)
+	{
+		ini = true;
+		view_ = window.getDefaultView();
+	}
+	window.clear();
+	window.setView(view_);
+}
+void Scene::draw(sf::RenderWindow & window)
+{
+
+	root_->ghostDraw(window, sf::RenderStates::Default);
+
+}
+void Scene::lateDraw(sf::RenderWindow & window)
+{
+	window.setView(window.getDefaultView());
+	window.display();
 }
 template<typename Func>
 std::vector<GameObject *> Scene::findGameObjects(Func func)

@@ -13,14 +13,25 @@ class Tile : public PathNode
 		virtual ~Tile();
 
 //DEBUG ONLY
+		void recolor();
 		void setColor(const sf::Color & color);
 		void setText(std::string text);
+		void setTraversable(bool value);
+
+		virtual bool traversable()
+		{
+			return isTraversable_;
+		}
 	protected:
 
 
 	private:
 
 		TileGraphic * go_;
+		bool isTraversable_;
+
+		static const sf::Color defaultColor;
+		static const sf::Color nonTraversableColor;
 
 
 

@@ -9,12 +9,10 @@ class Tile;
 class PathNode : sf::NonCopyable
 {
 	public:
-		PathNode(int x, int y);
+		PathNode(int x_, int y);
 		virtual ~PathNode();
 
-		int get_x()const{return coordinates_.x;}
-		int get_y()const{return coordinates_.y;}
-		sf::Vector2i getCoordinates()const{return coordinates_;}
+		const sf::Vector2i & getCoordinates()const{return coordinates_;}
 
 		std::vector<Tile*> getDirectNeighbours()const;
 		std::vector<Tile*> getAllNeighbours()const;
@@ -24,14 +22,18 @@ class PathNode : sf::NonCopyable
 		float f_;
 		PathNode * parentNode_;
 
+
+
 		virtual bool traversable()const{return true;}
+		virtual float getTravelCost()const{return 0.0f;};
 	protected:
 	private:
 
-		sf::Vector2i coordinates_;
+		const sf::Vector2i coordinates_;
+	public:
+		const int x_;
+		const int y_;
 
-		int & x_;
-		int & y_;
 };
 
 #endif // PATHNODE_H

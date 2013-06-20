@@ -51,14 +51,16 @@ void Controller::handleEvent(const sf::Event & event)
 
        // int keyCodeInt = (int)event.key.code;
         //keyBoolMap::iterator it = pressedKeys.find(keyCodeInt);
-		pressedKeys[event.key.code] = true;
+        if(event.key.code >= 0)
+			pressedKeys[event.key.code] = true;
 
     }
     else if(event.type == sf::Event::KeyReleased)
     {
 
        // int keyCodeInt = (int)event.key.code;
-		pressedKeys[event.key.code] = false;
+       if(event.key.code >= 0)
+			pressedKeys[event.key.code] = false;
 
     }
     else if(event.type == sf::Event::MouseButtonPressed)
