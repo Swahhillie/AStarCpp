@@ -45,3 +45,16 @@ void Game::run()
 }
 
 
+void Game::executeCommandLineArguments(int argc, const char ** argv)
+{
+	//iterate of arguments provided on the command line
+	for(auto i = 1; i < argc; i++)
+	{
+		std::string command(argv[i]);
+		//if the command contains '.lua' this is an instruction to open and execute the lua file
+		if(command.find(".lua") != std::string::npos)
+		{
+			ScriptManager::instance().executeScriptFileAtPath(command);
+		}
+	}
+}

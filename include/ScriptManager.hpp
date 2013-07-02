@@ -2,11 +2,9 @@
 #define SCRIPTMANAGER_HPP
 
 #include "Manager.hpp"
-#include <angelscript.h>
-#include <scriptstdstring/scriptstdstring.h>
-#include <scriptbuilder/scriptbuilder.h>
 #include <sstream>
 #include <cstdio>
+#include "LuaState.hpp"
 
 
 class ScriptManager : public Manager
@@ -18,19 +16,15 @@ class ScriptManager : public Manager
 			return INSTANCE;
 		}
 		virtual ~ScriptManager();
+
+		void executeScriptFileAtPath(const std::string & path);
 	protected:
 		virtual void start();
 	private:
 		ScriptManager();
 
-		asIScriptEngine * engine_;
+		LuaState luaState;
 
-		void buildScripts();
-		void runScripts();
-
-		//registering types
-
-		void registerVector3();
 };
 
 #endif // SCRIPTMANAGER_HPP

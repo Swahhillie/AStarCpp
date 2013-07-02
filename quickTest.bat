@@ -1,0 +1,1 @@
+start AStarCpp.exe hello.lua

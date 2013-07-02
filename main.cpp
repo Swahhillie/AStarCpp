@@ -3,11 +3,8 @@
 #include "UnitTest++.h"
 using namespace std;
 
-int main()
+int main(int argc, const char ** argv)
 {
-
-
-
 
 
 
@@ -16,6 +13,9 @@ int main()
 
 
     Game game;
+
+    game.executeCommandLineArguments(argc, argv);
+
     game.run();
 
     return 0;

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1371251171 source:e:\users\david\documents\github\astarcpp\main.cpp
+1372799317 source:e:\users\david\documents\github\astarcpp\main.cpp
 	<iostream>
 	"Game.hpp"
 	"UnitTest++.h"
@@ -64,11 +64,11 @@
 	<SFML/System.hpp>
 	<iostream>
 
-1371757573 e:\users\david\documents\github\astarcpp\include\game.hpp
+1372799297 e:\users\david\documents\github\astarcpp\include\game.hpp
 	"Controller.hpp"
 	<SFML/Graphics.hpp>
 
-1371757598 source:e:\users\david\documents\github\astarcpp\src\game.cpp
+1372799619 source:e:\users\david\documents\github\astarcpp\src\game.cpp
 	"Game.hpp"
 	"TileManager.hpp"
 	<SFML/Graphics.hpp>
@@ -166,19 +166,16 @@
 	<SFML/System.hpp>
 	<random>
 
-1371764894 e:\users\david\documents\github\astarcpp\include\scriptmanager.hpp
+1372799291 e:\users\david\documents\github\astarcpp\include\scriptmanager.hpp
 	"Manager.hpp"
-	<angelscript.h>
-	<scriptstdstring/scriptstdstring.h>
-	<scriptbuilder/scriptbuilder.h>
 	<sstream>
 	<cstdio>
+	"LuaState.hpp"
 
-1372370530 source:e:\users\david\documents\github\astarcpp\src\scriptmanager.cpp
+1372799627 source:e:\users\david\documents\github\astarcpp\src\scriptmanager.cpp
 	"ScriptManager.hpp"
 	<SFML/System.hpp>
 	<assert.h>
-	<scriptarray/scriptarray.h>
 
 1371760608 source:e:\users\david\documents\github\astarcpp\src\scriptbuilder.cpp
 	"scriptbuilder\scriptbuilder.h"
@@ -197,4 +194,13 @@
 	<stdlib.h>
 	<locale.h>
 	<map>
+
+1372791201 e:\users\david\documents\github\astarcpp\include\luastate.hpp
+	<iostream>
+	"lua.h"
+	"lualib.h"
+	"lauxlib.h"
+
+1372790326 source:e:\users\david\documents\github\astarcpp\src\luastate.cpp
+	"LuaState.hpp"
 

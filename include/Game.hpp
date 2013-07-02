@@ -14,6 +14,7 @@ public:
 
     void build();
     void run();
+    void executeCommandLineArguments(int argc, const char ** argv);
 
 protected:
 private:
