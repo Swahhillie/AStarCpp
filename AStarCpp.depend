@@ -174,10 +174,11 @@
 	<sstream>
 	<cstdio>
 
-1371767258 source:e:\users\david\documents\github\astarcpp\src\scriptmanager.cpp
+1372370530 source:e:\users\david\documents\github\astarcpp\src\scriptmanager.cpp
 	"ScriptManager.hpp"
 	<SFML/System.hpp>
 	<assert.h>
+	<scriptarray/scriptarray.h>
 
 1371760608 source:e:\users\david\documents\github\astarcpp\src\scriptbuilder.cpp
 	"scriptbuilder\scriptbuilder.h"

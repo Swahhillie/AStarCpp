@@ -1,6 +1,7 @@
 #include "ScriptManager.hpp"
 #include <SFML/System.hpp>
 #include <assert.h>
+#include <scriptarray/scriptarray.h>
 
 void MessageCallback(const asSMessageInfo * msg, void * param)
 {
@@ -42,6 +43,7 @@ void ScriptManager::start()
     r = engine_->RegisterGlobalFunction("void print(const string &in)", asFUNCTION(print), asCALL_CDECL);
     assert(r >= 0);
     buildScripts();
+    RegisterScriptArray(engine_, true);
     runScripts();
 }
 void ScriptManager::buildScripts()
