@@ -17,13 +17,13 @@ class ScriptManager : public Manager
 		}
 		virtual ~ScriptManager();
 
-		void executeScriptFileAtPath(const std::string & path);
+		void executeScriptFileAtPath(const char * filePath);
 	protected:
 		virtual void start();
 	private:
 		ScriptManager();
 
-		LuaState luaState;
+		LuaState ls;
 
 };
 

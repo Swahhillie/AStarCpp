@@ -6,8 +6,10 @@
 
 
 ScriptManager::ScriptManager()
+:ls(LuaState())
 {
     //ctor
+
 }
 
 ScriptManager::~ScriptManager()
@@ -16,9 +18,10 @@ ScriptManager::~ScriptManager()
 }
 void ScriptManager::start()
 {
-
+	luaL_openlibs(ls);
 }
-void ScriptManager::executeScriptFileAtPath(const std::string & filePath)
+void ScriptManager::executeScriptFileAtPath(const char * filePath)
 {
 	std::cout << "Do script file: " << filePath << std::endl;
+	luaL_dofile(ls, filePath);
 }

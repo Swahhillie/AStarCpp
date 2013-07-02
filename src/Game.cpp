@@ -54,7 +54,7 @@ void Game::executeCommandLineArguments(int argc, const char ** argv)
 		//if the command contains '.lua' this is an instruction to open and execute the lua file
 		if(command.find(".lua") != std::string::npos)
 		{
-			ScriptManager::instance().executeScriptFileAtPath(command);
+			ScriptManager::instance().executeScriptFileAtPath(argv[i]);
 		}
 	}
 }
