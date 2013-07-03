@@ -11,7 +11,7 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1372867621 source:e:\users\david\documents\github\astarcpp\src\tilemanager.cpp
+1372878167 source:e:\users\david\documents\github\astarcpp\src\tilemanager.cpp
 	"TileManager.hpp"
 	<vector>
 	<sstream>
@@ -46,7 +46,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
 
-1372858151 source:e:\users\david\documents\github\astarcpp\src\tile.cpp
+1372878033 source:e:\users\david\documents\github\astarcpp\src\tile.cpp
 	"Tile.hpp"
 	"GameObject.hpp"
 	<assert.h>
@@ -55,7 +55,7 @@
 	<sstream>
 	"Random.hpp"
 
-1371732701 e:\users\david\documents\github\astarcpp\include\tile.hpp
+1372875600 e:\users\david\documents\github\astarcpp\include\tile.hpp
 	"PathNode.hpp"
 	<SFML/graphics.hpp>
 
@@ -241,12 +241,33 @@
 	<sstream>
 	<iomanip>
 
-1372867599 e:\users\david\documents\github\astarcpp\include\tiledworld.hpp
+1372880652 e:\users\david\documents\github\astarcpp\include\tiledworld.hpp
 	"GameObject.hpp"
 	<SFML/Graphics.hpp>
 	<string>
+	<json/json.h>
+	<map>
+	"TiledFile.hpp"
 
-1372867557 source:e:\users\david\documents\github\astarcpp\src\tiledworld.cpp
+1372880548 source:e:\users\david\documents\github\astarcpp\src\tiledworld.cpp
 	"TiledWorld.hpp"
 	<assert.h>
+	<json/json.h>
+	<iostream>
+	<fstream>
+	"UnitTest++.h"
+
+1372883398 e:\users\david\documents\github\astarcpp\include\tiledfile.hpp
+	<string>
+	<map>
+	<vector>
+	<json/json.h>
+
+1372884243 source:e:\users\david\documents\github\astarcpp\src\tiledfile.cpp
+	"TiledFile.hpp"
+	"UnitTest++.h"
+	<assert.h>
+	<limits>
+	<cmath>
+	<algorithm>
 

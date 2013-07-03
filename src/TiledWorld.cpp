@@ -1,5 +1,9 @@
 #include "TiledWorld.hpp"
 #include <assert.h>
+#include <json/json.h>
+#include <iostream>
+#include <fstream>
+#include "UnitTest++.h"
 
 TiledWorld::TiledWorld(const std::string & name)
 :GameObject(name)
@@ -48,3 +52,16 @@ void TiledWorld::draw(sf::RenderTarget & target, sf::RenderStates states)const
 	states.texture = &worldSprite_;
 	target.draw(quads_, states);
 }
+void TiledWorld::loadTiledMap()
+{
+	std::ifstream file("assets/hubworld.json", std::ifstream::in);
+	std::string fullFileContent;
+	std::string temp;
+	while(std::getline(file, temp))
+	{
+		fullFileContent.append(temp);
+	}
+	tiledFile_.loadFromJsonString(fullFileContent);
+}
+
+

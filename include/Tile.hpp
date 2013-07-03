@@ -9,7 +9,7 @@ class GameObject;
 class Tile : public PathNode
 {
 	public:
-		Tile(int column, int row, TileGraphic * go);
+		Tile(int column, int row);
 		virtual ~Tile();
 
 //DEBUG ONLY
@@ -27,7 +27,7 @@ class Tile : public PathNode
 
 	private:
 
-		TileGraphic * go_;
+
 		bool isTraversable_;
 
 		static const sf::Color defaultColor;

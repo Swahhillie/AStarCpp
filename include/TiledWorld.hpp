@@ -4,23 +4,35 @@
 #include "GameObject.hpp"
 #include <SFML/Graphics.hpp>
 #include <string>
+#include <json/json.h>
+#include <map>
+#include "TiledFile.hpp"
+
+
 
 class TiledWorld : public GameObject
 {
-	public:
-		TiledWorld(const std::string & name);
-		virtual ~TiledWorld();
+public:
+    TiledWorld(const std::string & name);
+    virtual ~TiledWorld();
 
 
-		void generateWorld(int columns, int rows, const sf::Vector2f & tileSize);
-	protected:
+    void loadTiledMap();
 
-		virtual void draw(sf::RenderTarget & target, sf::RenderStates states)const;
-	private:
+protected:
+
+    virtual void draw(sf::RenderTarget & target, sf::RenderStates states)const;
+private:
 
 
-		sf::VertexArray quads_;
-		sf::Texture worldSprite_;
+    void generateWorld(int columns, int rows, const sf::Vector2f & tileSize);
+
+    sf::VertexArray quads_;
+    sf::Texture worldSprite_;
+
+
+
+    TiledFile tiledFile_;
 
 
 };

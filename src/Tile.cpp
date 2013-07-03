@@ -6,14 +6,11 @@
 #include <sstream>
 #include "Random.hpp"
 
-Tile::Tile(int x, int y, TileGraphic * go) : PathNode(x, y),
- go_(go),
+Tile::Tile(int x, int y) : PathNode(x, y),
  isTraversable_(true)
 {
 	//ctor
-	assert(go_ != nullptr);
-	sf::Vector2f tileSize = TileManager::getTileSize();
-	go_->setPosition(tileSize.x * x_, tileSize.y * y_);
+	//sf::Vector2f tileSize = TileManager::getTileSize();
 
 
 
@@ -25,9 +22,12 @@ Tile::~Tile()
 }
 void Tile::setColor(const sf::Color & color)
 {
-	go_->rectangle_.setFillColor(color);
+	//go_->rectangle_.setFillColor(color);
 }
-void Tile::setText(std::string text){go_->setText(text);}
+void Tile::setText(std::string text)
+{
+    //go_->setText(text);
+}
 void Tile::setTraversable(bool value)
 {
 	if(value)
@@ -36,7 +36,7 @@ void Tile::setTraversable(bool value)
 	}
 	else
 	{
-		go_->rectangle_.setFillColor(sf::Color::Black);
+		//go_->rectangle_.setFillColor(sf::Color::Black);
 	}
 	isTraversable_ = value;
 }

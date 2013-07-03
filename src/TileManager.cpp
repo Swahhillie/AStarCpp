@@ -25,7 +25,7 @@ TileManager::TileManager():
     generateTiles(columns_, rows_);
 
     tiledWorld_ = Scene::instance().createGameObject<TiledWorld>("TiledWorld");
-    tiledWorld_->generateWorld(columns_, rows_, tileSize_);
+    tiledWorld_->loadTiledMap();
 
 }
 
@@ -69,16 +69,11 @@ void TileManager::generateTiles(int columns, int rows)
     }
 
 
-
-    Scene & scene = Scene::instance();
-
     for(auto i = 0; i < columns_; i++)
     {
         for(auto j = 0; j < rows_; j++)
         {
-            auto * go = scene.createGameObject<TileGraphic>("Tile");
-            go->setParent(tileHolder_);
-            tiles_[i][j] = new Tile(i, j, go);
+            tiles_[i][j] = new Tile(i, j);
         }
     }
 

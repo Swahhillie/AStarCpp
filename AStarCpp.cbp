@@ -60,6 +60,7 @@
 		<Unit filename="include/Tile.hpp" />
 		<Unit filename="include/TileGraphic.hpp" />
 		<Unit filename="include/TileManager.hpp" />
+		<Unit filename="include/TiledFile.hpp" />
 		<Unit filename="include/TiledWorld.hpp" />
 		<Unit filename="include/Time.hpp" />
 		<Unit filename="main.cpp" />
@@ -77,10 +78,10 @@
 		<Unit filename="src/Tile.cpp" />
 		<Unit filename="src/TileGraphic.cpp" />
 		<Unit filename="src/TileManager.cpp" />
+		<Unit filename="src/TiledFile.cpp" />
 		<Unit filename="src/TiledWorld.cpp" />
 		<Unit filename="src/Time.cpp" />
 		<Unit filename="src/jsoncpp.cpp" />
-		<Unit filename="test.as" />
 		<Extensions>
 			<code_completion />
 			<envvars />
