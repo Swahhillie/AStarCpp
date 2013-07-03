@@ -1,0 +1,4 @@
+http://jsoncpp.sourceforge.net/index.html
+http://www.sfml-dev.org/
+http://www.mapeditor.org/
+http://www.codeblocks.org/
