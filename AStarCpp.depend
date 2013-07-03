@@ -172,7 +172,7 @@
 	<cstdio>
 	"LuaState.hpp"
 
-1372801939 source:e:\users\david\documents\github\astarcpp\src\scriptmanager.cpp
+1372809664 source:e:\users\david\documents\github\astarcpp\src\scriptmanager.cpp
 	"ScriptManager.hpp"
 	<SFML/System.hpp>
 	<assert.h>
@@ -203,4 +203,40 @@
 
 1372790326 source:e:\users\david\documents\github\astarcpp\src\luastate.cpp
 	"LuaState.hpp"
+
+1304372844 source:e:\users\david\documents\github\astarcpp\src\jsoncpp.cpp
+	<json/json.h>
+	<json/reader.h>
+	<json/value.h>
+	"json_tool.h"
+	<utility>
+	<cstdio>
+	<cassert>
+	<cstring>
+	<iostream>
+	<stdexcept>
+	<stdlib.h>
+	<assert.h>
+	<json/value.h>
+	<json/writer.h>
+	"json_batchallocator.h"
+	<iostream>
+	<utility>
+	<stdexcept>
+	<cstring>
+	<cassert>
+	<cpptl/conststring.h>
+	<cstddef>
+	"json_internalarray.inl"
+	"json_internalmap.inl"
+	"json_valueiterator.inl"
+	<json/writer.h>
+	"json_tool.h"
+	<utility>
+	<assert.h>
+	<stdio.h>
+	<string.h>
+	<iostream>
+	<sstream>
+	<iomanip>
 

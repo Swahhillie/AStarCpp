@@ -36,6 +36,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 			<Add option="-DSFML_STATIC" />
+			<Add option="-DJSON_IS_AMALGAMATION" />
 			<Add directory="include" />
 		</Compiler>
 		<Linker>
@@ -45,10 +46,13 @@
 			<Add library="UnitTest++" />
 			<Add library="E:\Users\David\Documents\GitHub\AStarCpp\libAngelscriptAddons.a" />
 			<Add library="angelscript" />
+			<Add library="lua51" />
+			<Add library="E:\Users\David\Documents\GitHub\AStarCpp\libJsonCppCB.a" />
 		</Linker>
 		<Unit filename="include/Controller.hpp" />
 		<Unit filename="include/Game.hpp" />
 		<Unit filename="include/GameObject.hpp" />
+		<Unit filename="include/LuaState.hpp" />
 		<Unit filename="include/Manager.hpp" />
 		<Unit filename="include/PathNode.hpp" />
 		<Unit filename="include/Pathfinder.hpp" />
@@ -64,6 +68,7 @@
 		<Unit filename="src/Controller.cpp" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/GameObject.cpp" />
+		<Unit filename="src/LuaState.cpp" />
 		<Unit filename="src/Manager.cpp" />
 		<Unit filename="src/PathNode.cpp" />
 		<Unit filename="src/Pathfinder.cpp" />
@@ -75,6 +80,7 @@
 		<Unit filename="src/TileGraphic.cpp" />
 		<Unit filename="src/TileManager.cpp" />
 		<Unit filename="src/Time.cpp" />
+		<Unit filename="src/jsoncpp.cpp" />
 		<Unit filename="test.as" />
 		<Extensions>
 			<code_completion />
