@@ -24,7 +24,8 @@ TileManager::TileManager():
     tileHolder_->setPosition(sf::Vector2f(50.0f, 50.0f));
     generateTiles(columns_, rows_);
 
-    tiledWorld_ = Scene::instance().createGameObject<TiledWorld>(columns_, rows_, tileSize_);
+    tiledWorld_ = Scene::instance().createGameObject<TiledWorld>("TiledWorld");
+    tiledWorld_->generateWorld(columns_, rows_, tileSize_);
 
 }
 

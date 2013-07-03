@@ -11,7 +11,7 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1372858132 source:e:\users\david\documents\github\astarcpp\src\tilemanager.cpp
+1372867621 source:e:\users\david\documents\github\astarcpp\src\tilemanager.cpp
 	"TileManager.hpp"
 	<vector>
 	<sstream>
@@ -241,11 +241,12 @@
 	<sstream>
 	<iomanip>
 
-1372862512 e:\users\david\documents\github\astarcpp\include\tiledworld.hpp
+1372867599 e:\users\david\documents\github\astarcpp\include\tiledworld.hpp
 	"GameObject.hpp"
 	<SFML/Graphics.hpp>
+	<string>
 
-1372862532 source:e:\users\david\documents\github\astarcpp\src\tiledworld.cpp
+1372867557 source:e:\users\david\documents\github\astarcpp\src\tiledworld.cpp
 	"TiledWorld.hpp"
 	<assert.h>
 

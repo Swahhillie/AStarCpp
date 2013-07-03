@@ -3,15 +3,16 @@
 
 #include "GameObject.hpp"
 #include <SFML/Graphics.hpp>
+#include <string>
 
 class TiledWorld : public GameObject
 {
 	public:
-		TiledWorld(int columns, int rows, const sf::Vector2f & tileSize);
+		TiledWorld(const std::string & name);
 		virtual ~TiledWorld();
 
 
-
+		void generateWorld(int columns, int rows, const sf::Vector2f & tileSize);
 	protected:
 
 		virtual void draw(sf::RenderTarget & target, sf::RenderStates states)const;
