@@ -25,12 +25,13 @@
 	"Pathfinder.hpp"
 	"Random.hpp"
 
-1372858277 e:\users\david\documents\github\astarcpp\include\tilemanager.hpp
+1372862676 e:\users\david\documents\github\astarcpp\include\tilemanager.hpp
 	"Manager.hpp"
 	<vector>
 	<memory>
 	<SFML/Graphics.hpp>
 	<list>
+	"TiledWorld.hpp"
 
 1371734705 source:e:\users\david\documents\github\astarcpp\src\pathnode.cpp
 	"PathNode.hpp"
@@ -239,4 +240,12 @@
 	<iostream>
 	<sstream>
 	<iomanip>
+
+1372862512 e:\users\david\documents\github\astarcpp\include\tiledworld.hpp
+	"GameObject.hpp"
+	<SFML/Graphics.hpp>
+
+1372862532 source:e:\users\david\documents\github\astarcpp\src\tiledworld.cpp
+	"TiledWorld.hpp"
+	<assert.h>
 

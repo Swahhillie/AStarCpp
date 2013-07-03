@@ -44,10 +44,7 @@
 			<Add library="sfml-window-s" />
 			<Add library="sfml-system-s" />
 			<Add library="UnitTest++" />
-			<Add library="E:\Users\David\Documents\GitHub\AStarCpp\libAngelscriptAddons.a" />
-			<Add library="angelscript" />
 			<Add library="lua51" />
-			<Add library="E:\Users\David\Documents\GitHub\AStarCpp\libJsonCppCB.a" />
 		</Linker>
 		<Unit filename="include/Controller.hpp" />
 		<Unit filename="include/Game.hpp" />
@@ -63,6 +60,7 @@
 		<Unit filename="include/Tile.hpp" />
 		<Unit filename="include/TileGraphic.hpp" />
 		<Unit filename="include/TileManager.hpp" />
+		<Unit filename="include/TiledWorld.hpp" />
 		<Unit filename="include/Time.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Controller.cpp" />
@@ -79,6 +77,7 @@
 		<Unit filename="src/Tile.cpp" />
 		<Unit filename="src/TileGraphic.cpp" />
 		<Unit filename="src/TileManager.cpp" />
+		<Unit filename="src/TiledWorld.cpp" />
 		<Unit filename="src/Time.cpp" />
 		<Unit filename="src/jsoncpp.cpp" />
 		<Unit filename="test.as" />

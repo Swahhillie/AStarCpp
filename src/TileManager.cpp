@@ -14,7 +14,8 @@
 TileManager::TileManager():
     columns_(30),
     rows_(20),
-    tileHolder_(nullptr)
+    tileHolder_(nullptr),
+    tiledWorld_(nullptr)
 {
     //ctor
 	tileSize_ = sf::Vector2f(30.0f, 30.0f);
@@ -22,6 +23,9 @@ TileManager::TileManager():
 
     tileHolder_->setPosition(sf::Vector2f(50.0f, 50.0f));
     generateTiles(columns_, rows_);
+
+    tiledWorld_ = Scene::instance().createGameObject<TiledWorld>(columns_, rows_, tileSize_);
+
 }
 
 TileManager::~TileManager()

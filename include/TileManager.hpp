@@ -6,6 +6,7 @@
 #include <memory>
 #include <SFML/Graphics.hpp>
 #include <list>
+#include "TiledWorld.hpp"
 
 class PathNode;
 class Tile;
@@ -130,6 +131,8 @@ class TileManager : public Manager
 		std::vector<Tile*> coloredTiles_;
 		std::list<PathNode*> path_;
 		static sf::Vector2f tileSize_;
+
+		TiledWorld * tiledWorld_;
 
 };
 
