@@ -24,19 +24,20 @@ class TileManager : public Manager
          *	Width and height of a single tile. used to scale and position the tiles.
          * \param
          * \param
-         * \return
+         * \return The width and height of a tile in pixels.
          *
          */
 
-		static sf::Vector2f getTileSize(){return sf::Vector2f(30,30);}
+		static sf::Vector2f getTileSize(){return tileSize_;}
 
-        /** \brief
+        /** \brief Generates a tile map of columns * rows
          *
-         * \param
-         * \param
+         * \param amount of columns to be generated
+         * \param amount of rows to be generated
          * \return
          *
          */
+		void generateTiles(int columns, int rows);
 
 		typedef std::vector<Tile* > Tiles;
 		const std::vector<Tiles> & getTiles()const{return tiles_;}
@@ -124,12 +125,11 @@ class TileManager : public Manager
 		int columns_;
 		int rows_;
 
-		void generateTiles();
-
 		GameObject * tileHolder_;
 
 		std::vector<Tile*> coloredTiles_;
 		std::list<PathNode*> path_;
+		static sf::Vector2f tileSize_;
 
 };
 

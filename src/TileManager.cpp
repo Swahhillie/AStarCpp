@@ -17,10 +17,11 @@ TileManager::TileManager():
     tileHolder_(nullptr)
 {
     //ctor
+	tileSize_ = sf::Vector2f(30.0f, 30.0f);
     tileHolder_ = Scene::instance().createGameObject<GameObject>("TileHolder");
 
     tileHolder_->setPosition(sf::Vector2f(50.0f, 50.0f));
-    generateTiles();
+    generateTiles(columns_, rows_);
 }
 
 TileManager::~TileManager()
@@ -40,8 +41,20 @@ TileManager& TileManager::operator=(const TileManager& rhs)
     return *this;
 }
 
-void TileManager::generateTiles()
+void TileManager::generateTiles(int columns, int rows)
 {
+
+	//cleanup the existing tiles
+	forEachTile([](Tile & tile){ delete &tile; });
+	for(auto * go : tileHolder_->getChildren())
+	{
+		GameObject::destroy(go);
+	}
+	tiles_.clear();
+
+	//assign the new width and height of the tiles
+	columns_ = columns;
+	rows_ = rows;
 
     tiles_.resize(columns_);
 
@@ -200,6 +213,8 @@ void TileManager::postRender()
     }
     coloredTiles_.clear();
 }
+sf::Vector2f TileManager::tileSize_;
+
 //check if the top left node has 2 neighbours
 TEST(testPathnodeNeighbourCount)
 {
@@ -281,3 +296,34 @@ TEST(accessAllTiles)
     });
 }
 
+
+TEST(regenerateTiles)
+{
+	TileManager & tileManager = TileManager::instance();
+
+	//store current values
+	auto c = tileManager.getColumns();
+	auto r = tileManager.getRows();
+
+	//regenerate tiles with specific size
+
+	auto newColumns = 25;
+	auto newRows = 50;
+
+	tileManager.generateTiles(newColumns, newRows);
+
+	//check dimensions
+	CHECK(tileManager.getColumns() == newColumns && tileManager.getRows() == newRows);
+
+	//check tile count and validity
+	auto count = 0;
+	tileManager.forEachTile([&](Tile & tile){count ++;});
+	CHECK(count == newColumns * newRows);
+
+	//restore original
+	tileManager.generateTiles(c, r);
+	CHECK(tileManager.getColumns() == c && tileManager.getRows() == r);
+
+
+
+}

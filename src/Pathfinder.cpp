@@ -171,7 +171,7 @@ TEST(oneStepPath)
 TEST(tenStepsRightPath)
 {
     auto path = Pathfinder::instance().getPath(sf::Vector2i(0,0), sf::Vector2i(10,0));
-    CHECK_EQUAL(11, path.size());
+    CHECK_EQUAL(11u, path.size());
 }
 
 TEST(tenStepsDown)
