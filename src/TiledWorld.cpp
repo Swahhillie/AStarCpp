@@ -59,6 +59,7 @@ void TiledWorld::loadTiledMap()
 
 
 	bool loadingSuccess = worldSprite_.loadFromFile("assets/" + tiledFile_.tilesets.front().image);
+
 	generateWorld(tiledFile_.width, tiledFile_.height, sf::Vector2f(tiledFile_.tilewidth, tiledFile_.tilewidth));
 	assert (loadingSuccess);
 }

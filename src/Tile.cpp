@@ -32,7 +32,7 @@ void Tile::loadFromTiledFile()
 
     //calculate how many tiles go in the x and y direction
     auto imagesX = (tileset.imagewidth - tileset.margin) / (tileset.tilewidth + tileset.margin);
-    auto imagesY = (tileset.imageheight - tileset.margin) / (tileset.tileheight + tileset.margin);
+//    auto imagesY = (tileset.imageheight - tileset.margin) / (tileset.tileheight + tileset.margin);
 
     //get the image that belongs to this position in the tile array
     tiledNodeId_ = tiledFile.layers[0].data[tileInd];
