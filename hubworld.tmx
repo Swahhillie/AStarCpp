@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="30" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="mapProp" value="mapPropTest"/>
+ </properties>
+ <tileset firstgid="1" name="tmw_desert_spacing" tilewidth="32" tileheight="32" spacing="1" margin="1">
+  <image source="assets/tmw_desert_spacing.png" width="265" height="199"/>
+  <tile id="9">
+   <properties>
+    <property name="traversable" value="false"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="30" height="30">
+  <properties>
+   <property name="test" value="testvalue"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0jkSglAQRdGv4gQoTqDgAM4iOOx/dd6ADWDZFBYdnOR1cJNuGWPa6MBCFz30McBOyBA2HLgYYQwPE8HuFDPMsYCPAEusBLshIqyxwbbYYySC3T0OOOKEMy644ibYTXFHhhwPPPHCW7CrVNXsErT7m+43d+3+T7dp/1xlV6m6yWraTRvW/QAQr2Gz
+  </data>
+ </layer>
+</map>

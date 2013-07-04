@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <iostream>
 #include <sstream>
+#include "CameraController.hpp"
 
 
 Scene::Scene()
@@ -24,7 +25,10 @@ Scene::~Scene()
 
 	delete root_;
 }
-
+void Scene::start()
+{
+	createGameObject<CameraController>("cameraController");
+}
 void Scene::update()
 {
 	for(auto* go : gameObjects_)
@@ -78,7 +82,7 @@ void Scene::draw(sf::RenderWindow & window)
 }
 void Scene::lateDraw(sf::RenderWindow & window)
 {
-	window.setView(window.getDefaultView());
+
 	window.display();
 }
 template<typename Func>

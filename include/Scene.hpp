@@ -31,7 +31,7 @@ class Scene : public Manager
 		}
 
 		GameObject * getRoot() {return root_;}
-
+		sf::View & getView(){return view_;}
 		int getObjectCount()const{return gameObjects_.size();}
 
         /** \brief Delete gameobject that are marked for destroy
@@ -44,6 +44,7 @@ class Scene : public Manager
 
 		void cleanup();
 	protected:
+		virtual void start();
 		virtual void update();
 		virtual void preRender(sf::RenderWindow & window);
 		virtual void draw(sf::RenderWindow & window);

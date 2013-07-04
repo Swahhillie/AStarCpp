@@ -27,12 +27,13 @@ struct TiledFile
     std::string orientation;
     unsigned int version;
 
-    std::map<std::string, std::string> properties;
+	typedef std::map<std::string, std::string> Properties;
+	Properties properties;
 
     struct Layer
     {
         Layer():
-            name(""),
+
             width(0u),
             height(0u),
             opacity(0.0f),
@@ -43,7 +44,9 @@ struct TiledFile
 
         }
         std::string name;
+        std::string type;
         std::vector<unsigned int> data;
+		Properties properties;
 
         unsigned int width;
         unsigned int height;
@@ -64,7 +67,7 @@ struct TiledFile
     struct TileSet
     {
         std::string name;
-        unsigned int firstgrid;
+        unsigned int firstgid;
         std::string image;
         unsigned int imageheight;
         unsigned int imagewidth;
@@ -72,7 +75,8 @@ struct TiledFile
         unsigned int spacing;
         unsigned int tilewidth;
         unsigned int tileheight;
-        std::map<std::string, std::string> properties;
+        Properties properties;
+        std::map<unsigned int, Properties> tileproperties;
 
 		bool operator == (const TileSet & other)const;
 
@@ -83,9 +87,9 @@ struct TiledFile
 	bool operator == ( const TiledFile & other)const;
 
 private:
-    std::vector<TileSet> parseTileSets(const Json::Value & node)const;
-    std::vector<Layer> parseLayers(const Json::Value & node)const;
-    std::map<std::string, std::string> parseProperties(const Json::Value & node)const;
+    static std::vector<TileSet> parseTileSets(const Json::Value & node);
+    static std::vector<Layer> parseLayers(const Json::Value & node);
+    static Properties parseProperties(const Json::Value & node);
 
 };
 

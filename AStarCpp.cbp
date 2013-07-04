@@ -46,6 +46,7 @@
 			<Add library="UnitTest++" />
 			<Add library="lua51" />
 		</Linker>
+		<Unit filename="include/CameraController.hpp" />
 		<Unit filename="include/Controller.hpp" />
 		<Unit filename="include/Game.hpp" />
 		<Unit filename="include/GameObject.hpp" />
@@ -64,6 +65,7 @@
 		<Unit filename="include/TiledWorld.hpp" />
 		<Unit filename="include/Time.hpp" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/CameraController.cpp" />
 		<Unit filename="src/Controller.cpp" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/GameObject.cpp" />

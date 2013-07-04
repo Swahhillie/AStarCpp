@@ -12,20 +12,23 @@
 #include "Random.hpp"
 
 TileManager::TileManager():
-    columns_(30),
-    rows_(20),
+    columns_(0),
+    rows_(0),
     tileHolder_(nullptr),
     tiledWorld_(nullptr)
 {
     //ctor
-	tileSize_ = sf::Vector2f(30.0f, 30.0f);
+	tileSize_ = sf::Vector2f(32.0f, 32.0f);
     tileHolder_ = Scene::instance().createGameObject<GameObject>("TileHolder");
 
     tileHolder_->setPosition(sf::Vector2f(50.0f, 50.0f));
-    generateTiles(columns_, rows_);
 
     tiledWorld_ = Scene::instance().createGameObject<TiledWorld>("TiledWorld");
     tiledWorld_->loadTiledMap();
+    columns_ = tiledWorld_->getTiledFile().width;
+    rows_ = tiledWorld_->getTiledFile().height;
+    generateTiles(columns_, rows_);
+
 
 }
 
@@ -38,7 +41,10 @@ TileManager::TileManager(const TileManager& other)
 {
     //copy ctor
 }
-
+void TileManager::start()
+{
+	forEachTile([](Tile & tile){tile.setTexCoords();});
+}
 TileManager& TileManager::operator=(const TileManager& rhs)
 {
     if (this == &rhs) return *this; // handle self assignment

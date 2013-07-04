@@ -35,16 +35,9 @@ void TiledWorld::generateWorld(int x, int y, const sf::Vector2f & tileSize)
 		quads_[i + 2].position = sf::Vector2f(c * tileSize.x, r * tileSize.y) + tileSize; //bottom right
 		quads_[i + 3].position = sf::Vector2f(c * tileSize.x, r * tileSize.y + tileSize.y); //bottom left
 
-		quads_[i + 0].texCoords = sf::Vector2f(0, 0);
-		quads_[i + 1].texCoords = sf::Vector2f(100, 0);
-		quads_[i + 2].texCoords = sf::Vector2f(100, 100);
-		quads_[i + 3].texCoords = sf::Vector2f(0, 100);
-
 	}
-	std::cout << std::endl << "Tileindex  = " << tileIndex << std::endl;
 	assert(tileIndex == x * y);
-	bool loadingSuccess = worldSprite_.loadFromFile("assets/superBasicTile100x100.png");
-	assert (loadingSuccess);
+
 
 }
 void TiledWorld::draw(sf::RenderTarget & target, sf::RenderStates states)const
@@ -62,6 +55,12 @@ void TiledWorld::loadTiledMap()
 		fullFileContent.append(temp);
 	}
 	tiledFile_.loadFromJsonString(fullFileContent);
+
+
+
+	bool loadingSuccess = worldSprite_.loadFromFile("assets/" + tiledFile_.tilesets.front().image);
+	generateWorld(tiledFile_.width, tiledFile_.height, sf::Vector2f(tiledFile_.tilewidth, tiledFile_.tilewidth));
+	assert (loadingSuccess);
 }
 
 

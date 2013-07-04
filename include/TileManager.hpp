@@ -46,6 +46,7 @@ class TileManager : public Manager
 
 		int getColumns()const{return columns_;}
 		int getRows()const{return rows_;}
+		TiledWorld & getTiledWorld(){return *tiledWorld_;}
 /** \brief Access a tile
  *	Lookup a tile in the tiles array. Check your input.
  * \param an sf::Vector2i or sf::Vector2u that contains the x and y coordinate of a tile.
@@ -109,6 +110,7 @@ class TileManager : public Manager
 
 		void generateWalls(float percentage = 0); // adds non traversable tiles to the map
 	protected:
+		virtual void start();
 		virtual void update();
 		virtual void draw(sf::RenderWindow & window);
 		virtual void postRender();

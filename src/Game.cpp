@@ -13,6 +13,7 @@ Game::Game():
 	managers_.push_back(&Scene::instance());
 	managers_.push_back(&TileManager::instance());
 	managers_.push_back(&ScriptManager::instance());
+	window_.setVerticalSyncEnabled(true);
 	build();
 	for(auto * manager : managers_)manager->start();
 }
@@ -40,6 +41,10 @@ void Game::run()
 		for(auto * manager : managers_)manager->draw(window_);
 		for(auto * manager : managers_)manager->lateDraw(window_);
 		for(auto * manager : managers_)manager->postRender();
+		if(Controller::getKeyDown(sf::Keyboard::Key::Escape))
+		{
+			controller_.stopRunning();
+		}
 
 	}
 }

@@ -19,6 +19,10 @@ public:
 
     void loadTiledMap();
 
+
+	sf::VertexArray & getQuads(){return quads_;}
+	TiledFile & getTiledFile(){return tiledFile_;}
+
 protected:
 
     virtual void draw(sf::RenderTarget & target, sf::RenderStates states)const;

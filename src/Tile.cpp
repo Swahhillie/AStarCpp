@@ -20,6 +20,36 @@ Tile::~Tile()
 {
 	//dtor
 }
+void Tile::setTexCoords()const
+{
+	TiledFile & tiledFile = TileManager::instance().getTiledWorld().getTiledFile();
+	auto tileInd = x_ * tiledFile.width + y_;
+	const TiledFile::TileSet & tileset = tiledFile.tilesets[0];
+	auto imagesX = (tileset.imagewidth - tileset.margin) / (tileset.tilewidth + tileset.margin);
+	auto imagesY = (tileset.imageheight - tileset.margin) / (tileset.tileheight + tileset.margin);
+
+	auto imageInd = tiledFile.layers[0].data[tileInd] -1;
+
+	sf::VertexArray & quads = TileManager::instance().getTiledWorld().getQuads();
+	auto vertexIndex = tileInd * 4;
+
+	auto c = (imageInd  % imagesX);
+	auto marginX = c * tileset.margin + tileset.margin;
+
+	auto r = (imageInd  / imagesX);
+	auto marginY = r * tileset.margin + tileset.margin;
+
+	c *= tileset.tilewidth;
+	r *= tileset.tileheight;
+	c += marginX;
+	r += marginY;
+
+	quads[vertexIndex + 0].texCoords = sf::Vector2f(c , r); //tl
+	quads[vertexIndex + 1].texCoords = sf::Vector2f(c + tiledFile.tilewidth, r); // tr
+	quads[vertexIndex + 2].texCoords = sf::Vector2f(c + tiledFile.tilewidth, r + tiledFile.tileheight); //br
+	quads[vertexIndex + 3].texCoords = sf::Vector2f(c, r + tiledFile.tileheight); //bl
+
+}
 void Tile::setColor(const sf::Color & color)
 {
 	//go_->rectangle_.setFillColor(color);

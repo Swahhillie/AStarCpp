@@ -14,6 +14,7 @@ class Tile : public PathNode
 
 //DEBUG ONLY
 		void recolor();
+		void setTexCoords()const;
 		void setColor(const sf::Color & color);
 		void setText(std::string text);
 		void setTraversable(bool value);
