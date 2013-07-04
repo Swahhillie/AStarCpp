@@ -33,6 +33,7 @@ class PathNode : sf::NonCopyable
 	public:
 		const int x_;
 		const int y_;
+		unsigned int getIndex()const;
 
 };
 

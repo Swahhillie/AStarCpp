@@ -12,7 +12,7 @@ int main(int argc, const char ** argv)
     std::cout << result << std::endl;
 
 
-    Game game;
+    Game & game = Game::instance();
 
     game.executeCommandLineArguments(argc, argv);
 

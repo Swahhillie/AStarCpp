@@ -43,7 +43,7 @@ TileManager::TileManager(const TileManager& other)
 }
 void TileManager::start()
 {
-	forEachTile([](Tile & tile){tile.setTexCoords();});
+	forEachTile([](Tile & tile){tile.loadFromTiledFile();});
 }
 TileManager& TileManager::operator=(const TileManager& rhs)
 {
@@ -115,8 +115,12 @@ void TileManager::update()
 
     //the mouse in the window.
     sf::Vector2i mousePos = Controller::mousePosition;
+
+	Scene & scene = Scene::instance();
+	sf::Vector2f worldMousePos = scene.getWindow().mapPixelToCoords(mousePos, scene.getView());
+
     //transform the mouse position in to tile space
-    sf::Vector2f transformedPosition = tileHolder_->getTransform().getInverse().transformPoint(mousePos.x, mousePos.y);
+    sf::Vector2f transformedPosition = tiledWorld_->getTransform().getInverse().transformPoint(worldMousePos.x, worldMousePos.y);
 
     sf::Vector2i coordinates = sf::Vector2i(transformedPosition.x / getTileSize().x, transformedPosition.y / getTileSize().y);
 
@@ -187,6 +191,9 @@ void TileManager::update()
             }
 
         }
+
+		Scene::instance().debugText_.setString(hoverTile->getTilePropertiesString());
+
     }
 
 }
@@ -201,7 +208,7 @@ void TileManager::draw(sf::RenderWindow & window)
 		v.color = sf::Color::Cyan;
 
 		v.position += sf::Vector2f(TileManager::getTileSize() /2.0f);
-		v.position = tileHolder_->getTransform() * v.position;
+		v.position = tiledWorld_->getTransform() * v.position;
 
 		points[i] = v;
 		i++;

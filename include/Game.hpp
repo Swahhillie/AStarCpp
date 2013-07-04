@@ -9,15 +9,23 @@ class Manager;
 class Game
 {
 public:
-    Game();
+
+    static Game & instance()
+    {
+    	static Game INSTANCE;
+    	return INSTANCE;
+    }
+
     virtual ~Game();
 
     void build();
     void run();
+    sf::RenderWindow & getWindow(){return window_;}
     void executeCommandLineArguments(int argc, const char ** argv);
 
 protected:
 private:
+	Game();
     sf::RenderWindow window_;
     Controller controller_;
 

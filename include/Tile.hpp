@@ -14,7 +14,7 @@ class Tile : public PathNode
 
 //DEBUG ONLY
 		void recolor();
-		void setTexCoords()const;
+		void loadFromTiledFile();
 		void setColor(const sf::Color & color);
 		void setText(std::string text);
 		void setTraversable(bool value);
@@ -23,6 +23,8 @@ class Tile : public PathNode
 		{
 			return isTraversable_;
 		}
+
+		std::string getTilePropertiesString()const;
 	protected:
 
 
@@ -30,9 +32,12 @@ class Tile : public PathNode
 
 
 		bool isTraversable_;
+		unsigned int tiledNodeId_;
 
 		static const sf::Color defaultColor;
 		static const sf::Color nonTraversableColor;
+
+		sf::Text txt_;
 
 
 

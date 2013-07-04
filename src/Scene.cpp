@@ -5,7 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include "CameraController.hpp"
-
+#include "Game.hpp"
 
 Scene::Scene()
 {
@@ -28,6 +28,9 @@ Scene::~Scene()
 void Scene::start()
 {
 	createGameObject<CameraController>("cameraController");
+	bool result = font_.loadFromFile("assets/arial.ttf");
+	assert(result);
+	debugText_ = sf::Text("debug", font_);
 }
 void Scene::update()
 {
@@ -79,6 +82,14 @@ void Scene::draw(sf::RenderWindow & window)
 
 	root_->ghostDraw(window, sf::RenderStates::Default);
 
+	window.setView(window.getDefaultView());
+	window.draw(debugText_);
+	window.setView(view_);
+
+}
+sf::RenderWindow & Scene::getWindow()const
+{
+	return Game::instance().getWindow();
 }
 void Scene::lateDraw(sf::RenderWindow & window)
 {

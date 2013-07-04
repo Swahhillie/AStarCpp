@@ -31,8 +31,11 @@ class Scene : public Manager
 		}
 
 		GameObject * getRoot() {return root_;}
+		sf::RenderWindow & getWindow()const;
 		sf::View & getView(){return view_;}
 		int getObjectCount()const{return gameObjects_.size();}
+
+		sf::Text debugText_;
 
         /** \brief Delete gameobject that are marked for destroy
          *
@@ -57,6 +60,7 @@ class Scene : public Manager
 		std::vector<GameObject*> gameObjects_;
 
 		sf::View view_;
+		sf::Font font_;
 
 
 /** \brief Find GameoOjects by predicate

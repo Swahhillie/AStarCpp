@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1372799317 source:e:\users\david\documents\github\astarcpp\main.cpp
+1372961675 source:e:\users\david\documents\github\astarcpp\main.cpp
 	<iostream>
 	"Game.hpp"
 	"UnitTest++.h"
@@ -11,7 +11,7 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1372894217 source:e:\users\david\documents\github\astarcpp\src\tilemanager.cpp
+1372961854 source:e:\users\david\documents\github\astarcpp\src\tilemanager.cpp
 	"TileManager.hpp"
 	<vector>
 	<sstream>
@@ -25,7 +25,7 @@
 	"Pathfinder.hpp"
 	"Random.hpp"
 
-1372893967 e:\users\david\documents\github\astarcpp\include\tilemanager.hpp
+1372959784 e:\users\david\documents\github\astarcpp\include\tilemanager.hpp
 	"Manager.hpp"
 	<vector>
 	<memory>
@@ -33,7 +33,7 @@
 	<list>
 	"TiledWorld.hpp"
 
-1371734705 source:e:\users\david\documents\github\astarcpp\src\pathnode.cpp
+1372966038 source:e:\users\david\documents\github\astarcpp\src\pathnode.cpp
 	"PathNode.hpp"
 	"Scene.hpp"
 	"TileManager.hpp"
@@ -41,12 +41,12 @@
 	"UnitTest++.h"
 	"Tile.hpp"
 
-1371748407 e:\users\david\documents\github\astarcpp\include\pathnode.hpp
+1372958201 e:\users\david\documents\github\astarcpp\include\pathnode.hpp
 	<vector>
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
 
-1372899490 source:e:\users\david\documents\github\astarcpp\src\tile.cpp
+1372966039 source:e:\users\david\documents\github\astarcpp\src\tile.cpp
 	"Tile.hpp"
 	"GameObject.hpp"
 	<assert.h>
@@ -55,7 +55,7 @@
 	<sstream>
 	"Random.hpp"
 
-1372893719 e:\users\david\documents\github\astarcpp\include\tile.hpp
+1372964585 e:\users\david\documents\github\astarcpp\include\tile.hpp
 	"PathNode.hpp"
 	<SFML/graphics.hpp>
 
@@ -65,7 +65,7 @@
 	<SFML/System.hpp>
 	<iostream>
 
-1372799297 e:\users\david\documents\github\astarcpp\include\game.hpp
+1372961714 e:\users\david\documents\github\astarcpp\include\game.hpp
 	"Controller.hpp"
 	<SFML/Graphics.hpp>
 
@@ -90,7 +90,7 @@
 	<string>
 	<iostream>
 
-1372901941 source:e:\users\david\documents\github\astarcpp\src\scene.cpp
+1372962464 source:e:\users\david\documents\github\astarcpp\src\scene.cpp
 	"Scene.hpp"
 	"UnitTest++.h"
 	<algorithm>
@@ -98,8 +98,9 @@
 	<iostream>
 	<sstream>
 	"CameraController.hpp"
+	"Game.hpp"
 
-1372901580 e:\users\david\documents\github\astarcpp\include\scene.hpp
+1372961781 e:\users\david\documents\github\astarcpp\include\scene.hpp
 	"Manager.hpp"
 	"GameObject.hpp"
 	"TileGraphic.hpp"
@@ -264,7 +265,7 @@
 	<vector>
 	<json/json.h>
 
-1372904284 source:e:\users\david\documents\github\astarcpp\src\tiledfile.cpp
+1372966329 source:e:\users\david\documents\github\astarcpp\src\tiledfile.cpp
 	"TiledFile.hpp"
 	"UnitTest++.h"
 	<assert.h>

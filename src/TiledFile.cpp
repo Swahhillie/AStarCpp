@@ -97,7 +97,7 @@ std::vector<TiledFile::TileSet> TiledFile::parseTileSets(const Json::Value & nod
             std::stringstream stream;
             stream << propName;
             stream >> tileId;
-            tileset.tileproperties[tileId] = parseProperties(tilepropertiesNode[propName]);
+            tileset.tileproperties[tileId + tileset.firstgid] = parseProperties(tilepropertiesNode[propName]);
         }
 
 
@@ -260,7 +260,7 @@ TEST(basicJson)
     tileset.spacing = 1u;
     tileset.tileheight = 32u;
     tileset.tilewidth = 32u;
-    tileset.tileproperties[9u]["traversable"] = "false";
+    tileset.tileproperties[9u + tileset.firstgid]["traversable"] = "false";
 
     TiledFile testLoaded;
     testLoaded.loadFromJsonString(testJson);
