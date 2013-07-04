@@ -46,7 +46,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
 
-1372966039 source:e:\users\david\documents\github\astarcpp\src\tile.cpp
+1372966437 source:e:\users\david\documents\github\astarcpp\src\tile.cpp
 	"Tile.hpp"
 	"GameObject.hpp"
 	<assert.h>
@@ -273,13 +273,13 @@
 	<cmath>
 	<algorithm>
 
-1372902092 source:e:\users\david\documents\github\astarcpp\src\cameracontroller.cpp
+1372967769 source:e:\users\david\documents\github\astarcpp\src\cameracontroller.cpp
 	"CameraController.hpp"
 	"Scene.hpp"
 	<math.h>
 	"Time.hpp"
 	"Controller.hpp"
 
-1372900942 e:\users\david\documents\github\astarcpp\include\cameracontroller.hpp
+1372967670 e:\users\david\documents\github\astarcpp\include\cameracontroller.hpp
 	"GameObject.hpp"
 

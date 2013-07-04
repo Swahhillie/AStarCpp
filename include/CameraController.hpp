@@ -14,7 +14,8 @@ class CameraController : public GameObject
 		virtual void update();
 
 	private:
-
+		float moveSpeed_;
+		float zoomSpeed_;
 		sf::View & view_;
 };
 
