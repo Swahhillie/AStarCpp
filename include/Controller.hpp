@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
+#include <functional>
 
 class Controller
 {
@@ -29,9 +30,10 @@ public:
     static bool getButton(sf::Mouse::Button button);
     static bool getButtonDown(sf::Mouse::Button button);
     static bool getButtonUp(sf::Mouse::Button button);
+    typedef std::function<void (const sf::Event &)> EventHandler;
 
-
-
+    static void addHandler(sf::Event::EventType type, EventHandler handler);
+    static void removeHandler(sf::Event::EventType type);
 /** \brief If a text event has occurred in the last frame txt will be set to the captured text.
  *
  * \param string will be set to caught characters of the last frame.
@@ -45,6 +47,7 @@ public:
     static sf::Vector2i mousePosition;
     static sf::Vector2i lastMousePosition;
 
+
 protected:
 private:
 
@@ -55,7 +58,11 @@ private:
 private:
     void refresh();
 
-    void handleEvent(const sf::Event & event);
+
+    std::vector< EventHandler > handlers_;
+    std::vector<bool> handlersSet_;
+
+    void addDefaultHandlers();
 
     static Controller * instance;
     std::vector<bool> pressedKeys_;

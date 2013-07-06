@@ -2,10 +2,13 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <iostream>
+#include <assert.h>
 
 Controller::Controller(sf::RenderWindow & window):window_(window)
 {
     //ctor
+    assert(instance == nullptr); // do not make 2 instances of controller.
+
     mousePressed = false;
     isRunning_ = true;
     instance = this;
@@ -14,17 +17,39 @@ Controller::Controller(sf::RenderWindow & window):window_(window)
     pressedButtons_ = std::vector<bool>(sf::Mouse::ButtonCount, false);
     lastButtons_ = std::vector<bool>(sf::Mouse::ButtonCount, false);
 
+
+
+    //add handlers for reading controls
+    addDefaultHandlers();
+
 }
 
 Controller::~Controller()
 {
     //dtor
+    assert(instance != nullptr);
+    instance = nullptr;
 }
-void Controller::handleEvent(const sf::Event & event)
+void Controller::addDefaultHandlers()
 {
-    switch (event.type)
+     //fill handlers with empty functions
+    handlers_=  std::vector<EventHandler>(sf::Event::EventType::Count, [](const sf::Event & event) {});
+    handlersSet_  = std::vector<bool>(sf::Event::EventType::Count, false);
+
+    //set the functions
+    addHandler(sf::Event::EventType::KeyPressed, [&](const sf::Event & event)
     {
-    case sf::Event::TextEntered:
+        if(event.key.code >= 0)
+            pressedKeys_[event.key.code] = true;
+    });
+
+
+    addHandler(sf::Event::EventType::KeyReleased, [&](const sf::Event & event)
+    {
+        if(event.key.code >= 0)
+            pressedKeys_[event.key.code] = false;
+    });
+    addHandler(sf::Event::EventType::TextEntered, [&](const sf::Event & event)
     {
         uint32_t uniC = event.text.unicode;
         if(uniC < 128)
@@ -33,67 +58,36 @@ void Controller::handleEvent(const sf::Event & event)
             sf::Utf32::encodeAnsi(uniC, std::back_inserter(newTxt));
             capturedText += newTxt;
         }
-    }
-    break;
-    case sf::Event::Closed:
-        {
-            //window_ closed. should destroy everything now..
+    });
+    addHandler(sf::Event::EventType::Closed,[&](const sf::Event & event)
+    {
         isRunning_ = false;
         window_.close();
+    });
+    addHandler(sf::Event::EventType::MouseButtonPressed,  [&](const sf::Event & event)
+    {
+       pressedButtons_[event.mouseButton.button] = true;
+    });
+    addHandler(sf::Event::EventType::MouseButtonReleased, [&](const sf::Event & event)
+    {
+        pressedButtons_[event.mouseButton.button] = false;
+    });
 
-        }
-    break;
-    case sf::Event::KeyPressed:
-        {
+}
+void Controller::addHandler(sf::Event::EventType type, EventHandler handler )
+{
+    assert(instance != nullptr); // the controller must be instanciated somewhere before.
 
-        if(event.key.code >= 0)
-            pressedKeys_[event.key.code] = true;
-
-        }
-    break;
-    case sf::Event::KeyReleased:
-        {
-                    if(event.key.code >= 0)
-            pressedKeys_[event.key.code] = false;
-
-        }
-    break;
-    case sf::Event::MouseButtonPressed:
-        {
-             pressedButtons_[event.mouseButton.button] = true;
-
-        }
-    break;
-    case sf::Event::MouseButtonReleased:
-        {
-
-            pressedButtons_[event.mouseButton.button] = false;
-        }
-    break;
-    case sf::Event::Resized:
-        {
-            //Scene::instance().getView().setSize(event.size.width, event.size.height);
-        }
-        break;
-    case sf::Event::LostFocus:
-        {
-
-        }
-        break;
-    case sf::Event::GainedFocus:
-        {
-
-        }
-        break;
-    default:
-        {
-            //std::cout << "Unhandled event : " << event.type << std::endl;
-        }
-    }
-
-
-
-
+    assert(instance->handlersSet_[type] == false); // adding multiple handlers to the same event, not supported
+    instance->handlers_[type] = handler;
+    instance->handlersSet_[type] = true;
+}
+void Controller::removeHandler(sf::Event::EventType type)
+{
+    assert(instance != nullptr);
+    assert(instance->handlersSet_[type]);
+    instance->handlers_[type] = [](const sf::Event &){};
+    instance->handlersSet_[type] = false;
 }
 void Controller::update()
 {
@@ -107,7 +101,7 @@ void Controller::update()
     sf::Event event;
     while(window_.pollEvent(event))
     {
-        handleEvent(event);
+        handlers_[event.type](event);
     }
     mousePosition = sf::Mouse::getPosition(window_);
     //update is used for continuos events suchs when a key is held down.
@@ -173,10 +167,10 @@ std::ostream & operator <<(std::ostream & left, const sf::Event::EventType & rig
 {
     static const char * enumNames[] =
     {
-         "None","Resized","LostFocus","GainedFocus","TextEntered","KeyPressed","KeyReleased",
-         "MouseWheelMoved","MouseButtonPressed","MouseButtonReleased","MouseMoved",
-         "MouseEntered","MouseLeft","JoystickButtonPressed","JoystickButtonReleased","JoystickMoved",
-         "JoystickConnected","JoystickDisconnected","Count"
+        "None","Resized","LostFocus","GainedFocus","TextEntered","KeyPressed","KeyReleased",
+        "MouseWheelMoved","MouseButtonPressed","MouseButtonReleased","MouseMoved",
+        "MouseEntered","MouseLeft","JoystickButtonPressed","JoystickButtonReleased","JoystickMoved",
+        "JoystickConnected","JoystickDisconnected","Count"
     };
     /*
     switch(right)

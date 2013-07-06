@@ -2,7 +2,7 @@
 #define CAMERACONTROLLER_HPP
 
 #include "GameObject.hpp"
-
+#include <SFML/Graphics.hpp>
 
 class CameraController : public GameObject
 {
@@ -17,6 +17,8 @@ class CameraController : public GameObject
 		float moveSpeed_;
 		float zoomSpeed_;
 		sf::View & view_;
+
+		void resizeHandler(const sf::Event & event);
 };
 
 #endif // CAMERACONTROLLER_HPP

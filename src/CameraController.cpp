@@ -3,17 +3,25 @@
 #include <math.h>
 #include "Time.hpp"
 #include "Controller.hpp"
+#include <assert.h>
+#include <functional>
+
 CameraController::CameraController(const std::string & name):GameObject(name),
     moveSpeed_(100.0f),
     zoomSpeed_(.5f),
     view_(Scene::instance().getView())
 {
     //ctor
+
+    //bind add a listener to the resize event of the controller
+    auto resizeHandlerFunc = std::bind(&CameraController::resizeHandler, this, std::placeholders::_1);
+    Controller::addHandler(sf::Event::EventType::Resized, resizeHandlerFunc);
 }
 
 CameraController::~CameraController()
 {
     //dtor
+    Controller::removeHandler(sf::Event::EventType::Resized);
 }
 void CameraController::update()
 {
@@ -49,4 +57,9 @@ void CameraController::update()
     }
 
 
+}
+void CameraController::resizeHandler(const sf::Event & event)
+{
+    assert(event.type == sf::Event::EventType::Resized);
+    std::cout << "resized event in the camera controller"<< std::endl;
 }
