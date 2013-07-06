@@ -15,11 +15,6 @@ public:
     {
         return isRunning_;
     }
-
-    virtual const std::string getName()
-    {
-        return "Controller";
-    }
     void stopRunning()
     {
         isRunning_ = false;
@@ -34,6 +29,8 @@ public:
     static bool getButton(sf::Mouse::Button button);
     static bool getButtonDown(sf::Mouse::Button button);
     static bool getButtonUp(sf::Mouse::Button button);
+
+
 
 /** \brief If a text event has occurred in the last frame txt will be set to the captured text.
  *
@@ -57,17 +54,22 @@ private:
 
 private:
     void refresh();
+
     void handleEvent(const sf::Event & event);
 
     static Controller * instance;
-    std::vector<bool> pressedKeys;
-    std::vector<bool> lastKeys;
+    std::vector<bool> pressedKeys_;
+    std::vector<bool> lastKeys_;
 
-    std::vector<bool> pressedButtons;
-    std::vector<bool> lastButtons;
+    std::vector<bool> pressedButtons_;
+    std::vector<bool> lastButtons_;
+
 
 	std::string capturedText;
 
     bool mousePressed;
+
+
 };
+std::ostream & operator << (std::ostream & left, const sf::Event::EventType & type);
 #endif // CONTROLLER_H

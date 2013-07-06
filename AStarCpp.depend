@@ -283,3 +283,263 @@
 1372967670 e:\users\david\documents\github\astarcpp\include\cameracontroller.hpp
 	"GameObject.hpp"
 
+1373060346 source:c:\users\david\documents\github\astarcpp\main.cpp
+	<iostream>
+	"Game.hpp"
+	"UnitTest++.h"
+
+1373060346 c:\users\david\documents\github\astarcpp\include\game.hpp
+	"Controller.hpp"
+	<SFML/Graphics.hpp>
+
+1373119174 c:\users\david\documents\github\astarcpp\include\controller.hpp
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+
+1373060346 source:c:\users\david\documents\github\astarcpp\src\cameracontroller.cpp
+	"CameraController.hpp"
+	"Scene.hpp"
+	<math.h>
+	"Time.hpp"
+	"Controller.hpp"
+
+1373060346 c:\users\david\documents\github\astarcpp\include\cameracontroller.hpp
+	"GameObject.hpp"
+
+1373060273 c:\users\david\documents\github\astarcpp\include\gameobject.hpp
+	<SFML/Graphics.hpp>
+	<list>
+	<string>
+	<iostream>
+
+1373060346 c:\users\david\documents\github\astarcpp\include\scene.hpp
+	"Manager.hpp"
+	"GameObject.hpp"
+	"TileGraphic.hpp"
+	<vector>
+	<memory>
+	<string>
+
+1373060273 c:\users\david\documents\github\astarcpp\include\manager.hpp
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+
+1373060273 c:\users\david\documents\github\astarcpp\include\tilegraphic.hpp
+	"GameObject.hpp"
+	<SFML/Graphics.hpp>
+
+1373060273 c:\users\david\documents\github\astarcpp\include\time.hpp
+	<SFML/System.hpp>
+
+1373060346 source:c:\users\david\documents\github\astarcpp\src\game.cpp
+	"Game.hpp"
+	"TileManager.hpp"
+	<SFML/Graphics.hpp>
+	"Scene.hpp"
+	"TileManager.hpp"
+	"Time.hpp"
+	"ScriptManager.hpp"
+
+1373060346 c:\users\david\documents\github\astarcpp\include\tilemanager.hpp
+	"Manager.hpp"
+	<vector>
+	<memory>
+	<SFML/Graphics.hpp>
+	<list>
+	"TiledWorld.hpp"
+
+1373060346 c:\users\david\documents\github\astarcpp\include\tiledworld.hpp
+	"GameObject.hpp"
+	<SFML/Graphics.hpp>
+	<string>
+	<json/json.h>
+	<map>
+	"TiledFile.hpp"
+
+1373060346 c:\users\david\documents\github\astarcpp\include\tiledfile.hpp
+	<string>
+	<map>
+	<vector>
+	<json/json.h>
+
+1373060346 c:\users\david\documents\github\astarcpp\include\scriptmanager.hpp
+	"Manager.hpp"
+	<sstream>
+	<cstdio>
+	"LuaState.hpp"
+
+1373060346 c:\users\david\documents\github\astarcpp\include\luastate.hpp
+	<iostream>
+	"lua.h"
+	"lualib.h"
+	"lauxlib.h"
+
+1373060273 source:c:\users\david\documents\github\astarcpp\src\gameobject.cpp
+	"GameObject.hpp"
+	"Scene.hpp"
+	<assert.h>
+	<iostream>
+
+1373060346 source:c:\users\david\documents\github\astarcpp\src\jsoncpp.cpp
+	<json/json.h>
+	<json/reader.h>
+	<json/value.h>
+	"json_tool.h"
+	<utility>
+	<cstdio>
+	<cassert>
+	<cstring>
+	<iostream>
+	<stdexcept>
+	<stdlib.h>
+	<assert.h>
+	<json/value.h>
+	<json/writer.h>
+	"json_batchallocator.h"
+	<iostream>
+	<utility>
+	<stdexcept>
+	<cstring>
+	<cassert>
+	<cpptl/conststring.h>
+	<cstddef>
+	"json_internalarray.inl"
+	"json_internalmap.inl"
+	"json_valueiterator.inl"
+	<json/writer.h>
+	"json_tool.h"
+	<utility>
+	<assert.h>
+	<stdio.h>
+	<string.h>
+	<iostream>
+	<sstream>
+	<iomanip>
+
+1373060346 source:c:\users\david\documents\github\astarcpp\src\luastate.cpp
+	"LuaState.hpp"
+
+1373060273 source:c:\users\david\documents\github\astarcpp\src\manager.cpp
+	"Manager.hpp"
+
+1373060346 source:c:\users\david\documents\github\astarcpp\src\pathfinder.cpp
+	"Pathfinder.hpp"
+	<list>
+	"TileManager.hpp"
+	"Tile.hpp"
+	"UnitTest++.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	<assert.h>
+
+1373060273 c:\users\david\documents\github\astarcpp\include\pathfinder.hpp
+	<SFML/System.hpp>
+	<list>
+	"PathfinderSettings.hpp"
+
+1373060273 c:\users\david\documents\github\astarcpp\include\pathfindersettings.hpp
+	<functional>
+	<vector>
+
+1373060346 c:\users\david\documents\github\astarcpp\include\tile.hpp
+	"PathNode.hpp"
+	<SFML/graphics.hpp>
+
+1373060346 c:\users\david\documents\github\astarcpp\include\pathnode.hpp
+	<vector>
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+
+1373060273 source:c:\users\david\documents\github\astarcpp\src\pathfindersettings.cpp
+	"PathfinderSettings.hpp"
+	"Tile.hpp"
+	"Pathfinder.hpp"
+	<assert.h>
+
+1373060346 source:c:\users\david\documents\github\astarcpp\src\pathnode.cpp
+	"PathNode.hpp"
+	"Scene.hpp"
+	"TileManager.hpp"
+	<assert.h>
+	"UnitTest++.h"
+	"Tile.hpp"
+
+1373060273 source:c:\users\david\documents\github\astarcpp\src\random.cpp
+	"Random.hpp"
+	<chrono>
+
+1373060273 c:\users\david\documents\github\astarcpp\include\random.hpp
+	<SFML/System.hpp>
+	<random>
+
+1373060346 source:c:\users\david\documents\github\astarcpp\src\scene.cpp
+	"Scene.hpp"
+	"UnitTest++.h"
+	<algorithm>
+	<assert.h>
+	<iostream>
+	<sstream>
+	"CameraController.hpp"
+	"Game.hpp"
+
+1373060346 source:c:\users\david\documents\github\astarcpp\src\scriptmanager.cpp
+	"ScriptManager.hpp"
+	<SFML/System.hpp>
+	<assert.h>
+
+1373060346 source:c:\users\david\documents\github\astarcpp\src\tile.cpp
+	"Tile.hpp"
+	"GameObject.hpp"
+	<assert.h>
+	"TileManager.hpp"
+	"TileGraphic.hpp"
+	<sstream>
+	"Random.hpp"
+
+1373060346 source:c:\users\david\documents\github\astarcpp\src\tiledfile.cpp
+	"TiledFile.hpp"
+	"UnitTest++.h"
+	<assert.h>
+	<limits>
+	<cmath>
+	<algorithm>
+
+1373060346 source:c:\users\david\documents\github\astarcpp\src\tiledworld.cpp
+	"TiledWorld.hpp"
+	<assert.h>
+	<json/json.h>
+	<iostream>
+	<fstream>
+	"UnitTest++.h"
+
+1373060273 source:c:\users\david\documents\github\astarcpp\src\tilegraphic.cpp
+	"TileGraphic.hpp"
+	<iostream>
+	"Time.hpp"
+	"TileManager.hpp"
+	<assert.h>
+
+1373060346 source:c:\users\david\documents\github\astarcpp\src\tilemanager.cpp
+	"TileManager.hpp"
+	<vector>
+	<sstream>
+	"Tile.hpp"
+	<iostream>
+	"Scene.hpp"
+	"TileGraphic.hpp"
+	"Controller.hpp"
+	"UnitTest++.h"
+	<assert.h>
+	"Pathfinder.hpp"
+	"Random.hpp"
+
+1373060273 source:c:\users\david\documents\github\astarcpp\src\time.cpp
+	"Time.hpp"
+
+1373116010 source:c:\users\david\documents\github\astarcpp\src\controller.cpp
+	"Controller.hpp"
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+	<iostream>
+

@@ -9,10 +9,10 @@ Controller::Controller(sf::RenderWindow & window):window_(window)
     mousePressed = false;
     isRunning_ = true;
     instance = this;
-    pressedKeys = std::vector<bool>(sf::Keyboard::KeyCount, false);
-    lastKeys = std::vector<bool>(sf::Keyboard::KeyCount, false);
-    pressedButtons = std::vector<bool>(sf::Mouse::ButtonCount, false);
-    lastButtons = std::vector<bool>(sf::Mouse::ButtonCount, false);
+    pressedKeys_ = std::vector<bool>(sf::Keyboard::KeyCount, false);
+    lastKeys_ = std::vector<bool>(sf::Keyboard::KeyCount, false);
+    pressedButtons_ = std::vector<bool>(sf::Mouse::ButtonCount, false);
+    lastButtons_ = std::vector<bool>(sf::Mouse::ButtonCount, false);
 
 }
 
@@ -22,60 +22,75 @@ Controller::~Controller()
 }
 void Controller::handleEvent(const sf::Event & event)
 {
-
-
-    //capturing text entered events
-    if(event.type == sf::Event::TextEntered)
+    switch (event.type)
+    {
+    case sf::Event::TextEntered:
     {
         uint32_t uniC = event.text.unicode;
-        if(uniC < 128){
-			std::string newTxt = "";
-			sf::Utf32::encodeAnsi(uniC, std::back_inserter(newTxt));
-			capturedText += newTxt;
+        if(uniC < 128)
+        {
+            std::string newTxt = "";
+            sf::Utf32::encodeAnsi(uniC, std::back_inserter(newTxt));
+            capturedText += newTxt;
         }
-
     }
-
-	//window close event
-    if(event.type == sf::Event::Closed)
-    {
-        //window_ closed. should destroy everything now..
+    break;
+    case sf::Event::Closed:
+        {
+            //window_ closed. should destroy everything now..
         isRunning_ = false;
         window_.close();
-        return;
-    }
-//copy values of prev frame in the lastKeys.
-    //now the static functions can compare the result to see if there is a difference
-    if(event.type == sf::Event::KeyPressed)
-    {
 
-       // int keyCodeInt = (int)event.key.code;
-        //keyBoolMap::iterator it = pressedKeys.find(keyCodeInt);
+        }
+    break;
+    case sf::Event::KeyPressed:
+        {
+
         if(event.key.code >= 0)
-			pressedKeys[event.key.code] = true;
+            pressedKeys_[event.key.code] = true;
 
+        }
+    break;
+    case sf::Event::KeyReleased:
+        {
+                    if(event.key.code >= 0)
+            pressedKeys_[event.key.code] = false;
+
+        }
+    break;
+    case sf::Event::MouseButtonPressed:
+        {
+             pressedButtons_[event.mouseButton.button] = true;
+
+        }
+    break;
+    case sf::Event::MouseButtonReleased:
+        {
+
+            pressedButtons_[event.mouseButton.button] = false;
+        }
+    break;
+    case sf::Event::Resized:
+        {
+            //Scene::instance().getView().setSize(event.size.width, event.size.height);
+        }
+        break;
+    case sf::Event::LostFocus:
+        {
+
+        }
+        break;
+    case sf::Event::GainedFocus:
+        {
+
+        }
+        break;
+    default:
+        {
+            //std::cout << "Unhandled event : " << event.type << std::endl;
+        }
     }
-    else if(event.type == sf::Event::KeyReleased)
-    {
 
-       // int keyCodeInt = (int)event.key.code;
-       if(event.key.code >= 0)
-			pressedKeys[event.key.code] = false;
-
-    }
-    else if(event.type == sf::Event::MouseButtonPressed)
-    {
-        //int buttonCode = (int)event.mouseButton.button;
-		pressedButtons[event.mouseButton.button] = true;
-
-    }
-    else if(event.type == sf::Event::MouseButtonReleased)
-    {
-
-        //int buttonCode = (int)event.mouseButton.button;
-		pressedButtons[event.mouseButton.button] = false;
-
-    }
 
 
 
@@ -99,44 +114,45 @@ void Controller::update()
 }
 void Controller::refresh()
 {
-    lastKeys = std::vector<bool>(pressedKeys);
+    lastKeys_ = std::vector<bool>(pressedKeys_);
 
     lastMousePosition = mousePosition;
 
-    lastButtons = std::vector<bool>(pressedButtons);
+    lastButtons_ = std::vector<bool>(pressedButtons_);
 
     capturedText = "";
+
 
 }
 
 bool Controller::getKey(sf::Keyboard::Key keyCode)
 {
-    return instance->pressedKeys[keyCode];
+    return instance->pressedKeys_[keyCode];
 }
 
 bool Controller::getKeyUp(sf::Keyboard::Key keyCode)
 {
-    return instance->lastKeys[keyCode] == true && instance->pressedKeys[keyCode] == false;
+    return instance->lastKeys_[keyCode] == true && instance->pressedKeys_[keyCode] == false;
 }
 
 bool Controller::getKeyDown(sf::Keyboard::Key keyCode)
 {
-    return instance->lastKeys[keyCode] == false && instance->pressedKeys[keyCode] == true;
+    return instance->lastKeys_[keyCode] == false && instance->pressedKeys_[keyCode] == true;
 }
 
 bool Controller::getButton(sf::Mouse::Button button)
 {
-    return instance->pressedButtons[button];
+    return instance->pressedButtons_[button];
 }
 
 bool Controller::getButtonUp(sf::Mouse::Button button)
 {
-    return instance->lastButtons[button] == true && instance->pressedButtons[button] == false;
+    return instance->lastButtons_[button] == true && instance->pressedButtons_[button] == false;
 }
 
 bool Controller::getButtonDown(sf::Mouse::Button button)
 {
-    return instance->lastButtons[button] == false && instance->pressedButtons[button] == true;
+    return instance->lastButtons_[button] == false && instance->pressedButtons_[button] == true;
 }
 
 sf::Vector2i Controller::getDeltaMouse()
@@ -152,6 +168,40 @@ bool Controller::getTextEntered(std::string & input)
         return true;
     }
     else return false;
+}
+std::ostream & operator <<(std::ostream & left, const sf::Event::EventType & right)
+{
+    static const char * enumNames[] =
+    {
+         "None","Resized","LostFocus","GainedFocus","TextEntered","KeyPressed","KeyReleased",
+         "MouseWheelMoved","MouseButtonPressed","MouseButtonReleased","MouseMoved",
+         "MouseEntered","MouseLeft","JoystickButtonPressed","JoystickButtonReleased","JoystickMoved",
+         "JoystickConnected","JoystickDisconnected","Count"
+    };
+    /*
+    switch(right)
+    {
+        case sf::Event::EventType::Resized:                 left << "Resized"; break;
+        case sf::Event::EventType::LostFocus:               left << "LostFocus"; break;
+        case sf::Event::EventType::GainedFocus:             left << "GainedFocus"; break;
+        case sf::Event::EventType::TextEntered:             left << "TextEntered"; break;
+        case sf::Event::EventType::KeyPressed:              left << "KeyPressed"; break;
+        case sf::Event::EventType::KeyReleased:             left << "KeyReleased"; break;
+        case sf::Event::EventType::MouseWheelMoved:         left << "MouseWheelMoved"; break;
+        case sf::Event::EventType::MouseButtonPressed:      left << "MouseButtonPressed"; break;
+        case sf::Event::EventType::MouseButtonReleased:     left << "MouseButtonReleased"; break;
+        case sf::Event::EventType::MouseMoved:              left << "MouseMoved"; break;
+        case sf::Event::EventType::MouseEntered:            left << "MouseEntered"; break;
+        case sf::Event::EventType::MouseLeft:               left << "MouseLeft"; break;
+        case sf::Event::EventType::JoystickButtonPressed:   left << "JoystickButtonPressed"; break;
+        case sf::Event::EventType::JoystickButtonReleased:  left << "JoystickButtonReleased"; break;
+        case sf::Event::EventType::JoystickMoved:           left << "JoystickMoved"; break;
+        case sf::Event::EventType::JoystickConnected:       left << "JoystickConnected"; break;
+        case sf::Event::EventType::JoystickDisconnected:    left << "JoystickDisconnected"; break;
+        case sf::Event::EventType::Count:                   left << "Count"; break;
+    }
+    */
+    return left << enumNames[right];
 }
 Controller * Controller::instance;
 sf::Vector2i Controller::mousePosition;
