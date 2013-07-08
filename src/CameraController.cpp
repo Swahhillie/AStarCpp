@@ -5,7 +5,7 @@
 #include "Controller.hpp"
 #include <assert.h>
 #include <functional>
-
+#include "SfMath.hpp"
 CameraController::CameraController(const std::string & name):GameObject(name),
     view_(Scene::instance().getView())
 {
@@ -65,11 +65,11 @@ void CameraController::moveView()
 
         float currentRotation = view_.getRotation();
 
-         dir = rotateVector2(dir, currentRotation);
+         dir = sf::vec::rotate(dir, currentRotation);
 
 
         //calculate the distance that will be traveled in 1 second
-        float magnitude = sqrtf(dir.x * dir.x + dir.y * dir.y);
+        float magnitude = sf::vec::magnitude(dir);
         dir /= magnitude;
 
 
@@ -103,12 +103,4 @@ void CameraController::resizeHandler(const sf::Event & event)
     sf::FloatRect visibleArea(view_.getCenter().x - view_.getSize().x /2, view_.getCenter().y - view_.getSize().y /2, event.size.width, event.size.height);
     view_ = sf::View(visibleArea);
 }
-sf::Vector2f CameraController::rotateVector2(const sf::Vector2f & v, float degrees)
-{
-    float cosRadians = cos(degrees * degToRad);
-    float sinRadians = sin(degrees * degToRad);
 
-    return sf::Vector2f(
-               v.x * cosRadians - v.y * sinRadians,
-               v.x * sinRadians + v.y * cosRadians);
-}

@@ -25,10 +25,9 @@ class CameraController : public GameObject
 		void zoomView();
 		void rotateView();
 
-		static sf::Vector2f rotateVector2(const sf::Vector2f & v, float degrees);
 
-		static constexpr float PI = 3.14159265f;
-		static constexpr float degToRad = PI / 180.0f;
+
+
 
 };
 
