@@ -275,7 +275,7 @@
 	<cmath>
 	<algorithm>
 
-1373298242 source:e:\users\david\documents\github\astarcpp\src\cameracontroller.cpp
+1373301836 source:e:\users\david\documents\github\astarcpp\src\cameracontroller.cpp
 	"CameraController.hpp"
 	"Scene.hpp"
 	<math.h>
@@ -284,7 +284,7 @@
 	<assert.h>
 	<functional>
 
-1373298295 e:\users\david\documents\github\astarcpp\include\cameracontroller.hpp
+1373300901 e:\users\david\documents\github\astarcpp\include\cameracontroller.hpp
 	"GameObject.hpp"
 	<SFML/Graphics.hpp>
 

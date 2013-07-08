@@ -7,8 +7,6 @@
 #include <functional>
 
 CameraController::CameraController(const std::string & name):GameObject(name),
-    moveSpeed_(100.0f),
-    zoomSpeed_(.5f),
     view_(Scene::instance().getView())
 {
     //ctor
@@ -45,6 +43,7 @@ void CameraController::rotateView()
         view_.rotate(-rotateSpeed_ * Time::deltaTime);
     }
 }
+
 void CameraController::moveView()
 {
     sf::Vector2f dir(0.0f, 0.0f);
@@ -60,11 +59,28 @@ void CameraController::moveView()
     //normalize dir
     if(dir != sf::Vector2f(0,0))
     {
+
+
+
+
+        float currentRotation = view_.getRotation();
+
+         dir = rotateVector2(dir, currentRotation);
+
+
+        //calculate the distance that will be traveled in 1 second
         float magnitude = sqrtf(dir.x * dir.x + dir.y * dir.y);
         dir /= magnitude;
+
+
         dir *= moveSpeed_;
+
+        //limit speed by dt
         dir *= Time::deltaTime;
-        //std::cout << dir.x << ", " << dir.y << std::endl;
+
+
+        //rotate dir by the views rotation
+
         view_.move(dir);
     }
 
@@ -86,4 +102,13 @@ void CameraController::resizeHandler(const sf::Event & event)
     assert(event.type == sf::Event::EventType::Resized);
     sf::FloatRect visibleArea(view_.getCenter().x - view_.getSize().x /2, view_.getCenter().y - view_.getSize().y /2, event.size.width, event.size.height);
     view_ = sf::View(visibleArea);
+}
+sf::Vector2f CameraController::rotateVector2(const sf::Vector2f & v, float degrees)
+{
+    float cosRadians = cos(degrees * degToRad);
+    float sinRadians = sin(degrees * degToRad);
+
+    return sf::Vector2f(
+               v.x * cosRadians - v.y * sinRadians,
+               v.x * sinRadians + v.y * cosRadians);
 }
