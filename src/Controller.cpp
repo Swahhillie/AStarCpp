@@ -84,10 +84,18 @@ void Controller::addHandler(sf::Event::EventType type, EventHandler handler )
 }
 void Controller::removeHandler(sf::Event::EventType type)
 {
-    assert(instance != nullptr);
-    assert(instance->handlersSet_[type]);
-    instance->handlers_[type] = [](const sf::Event &){};
-    instance->handlersSet_[type] = false;
+    if(instance){
+
+		assert(instance != nullptr);
+		assert(instance->handlersSet_[type]);
+		instance->handlers_[type] = [](const sf::Event &){};
+		instance->handlersSet_[type] = false;
+    }
+    else
+	{
+		//game is being deconstructed
+	}
+
 }
 void Controller::update()
 {

@@ -16,9 +16,14 @@ class CameraController : public GameObject
 	private:
 		float moveSpeed_;
 		float zoomSpeed_;
+		float rotateSpeed_ = 50;
 		sf::View & view_;
 
 		void resizeHandler(const sf::Event & event);
+
+		void moveView();
+		void zoomView();
+		void rotateView();
 };
 
 #endif // CAMERACONTROLLER_HPP

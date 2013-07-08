@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1372961675 source:e:\users\david\documents\github\astarcpp\main.cpp
+1373296014 source:e:\users\david\documents\github\astarcpp\main.cpp
 	<iostream>
 	"Game.hpp"
 	"UnitTest++.h"
@@ -11,7 +11,7 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1372961854 source:e:\users\david\documents\github\astarcpp\src\tilemanager.cpp
+1373296014 source:e:\users\david\documents\github\astarcpp\src\tilemanager.cpp
 	"TileManager.hpp"
 	<vector>
 	<sstream>
@@ -25,7 +25,7 @@
 	"Pathfinder.hpp"
 	"Random.hpp"
 
-1372959784 e:\users\david\documents\github\astarcpp\include\tilemanager.hpp
+1373296013 e:\users\david\documents\github\astarcpp\include\tilemanager.hpp
 	"Manager.hpp"
 	<vector>
 	<memory>
@@ -33,7 +33,7 @@
 	<list>
 	"TiledWorld.hpp"
 
-1372966038 source:e:\users\david\documents\github\astarcpp\src\pathnode.cpp
+1373296014 source:e:\users\david\documents\github\astarcpp\src\pathnode.cpp
 	"PathNode.hpp"
 	"Scene.hpp"
 	"TileManager.hpp"
@@ -41,12 +41,12 @@
 	"UnitTest++.h"
 	"Tile.hpp"
 
-1372958201 e:\users\david\documents\github\astarcpp\include\pathnode.hpp
+1373296013 e:\users\david\documents\github\astarcpp\include\pathnode.hpp
 	<vector>
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
 
-1372966437 source:e:\users\david\documents\github\astarcpp\src\tile.cpp
+1373296014 source:e:\users\david\documents\github\astarcpp\src\tile.cpp
 	"Tile.hpp"
 	"GameObject.hpp"
 	<assert.h>
@@ -55,7 +55,7 @@
 	<sstream>
 	"Random.hpp"
 
-1372964585 e:\users\david\documents\github\astarcpp\include\tile.hpp
+1373296013 e:\users\david\documents\github\astarcpp\include\tile.hpp
 	"PathNode.hpp"
 	<SFML/graphics.hpp>
 
@@ -65,11 +65,11 @@
 	<SFML/System.hpp>
 	<iostream>
 
-1372961714 e:\users\david\documents\github\astarcpp\include\game.hpp
+1373296013 e:\users\david\documents\github\astarcpp\include\game.hpp
 	"Controller.hpp"
 	<SFML/Graphics.hpp>
 
-1372902134 source:e:\users\david\documents\github\astarcpp\src\game.cpp
+1373296014 source:e:\users\david\documents\github\astarcpp\src\game.cpp
 	"Game.hpp"
 	"TileManager.hpp"
 	<SFML/Graphics.hpp>
@@ -90,7 +90,7 @@
 	<string>
 	<iostream>
 
-1372962464 source:e:\users\david\documents\github\astarcpp\src\scene.cpp
+1373296014 source:e:\users\david\documents\github\astarcpp\src\scene.cpp
 	"Scene.hpp"
 	"UnitTest++.h"
 	<algorithm>
@@ -100,7 +100,7 @@
 	"CameraController.hpp"
 	"Game.hpp"
 
-1372961781 e:\users\david\documents\github\astarcpp\include\scene.hpp
+1373296013 e:\users\david\documents\github\astarcpp\include\scene.hpp
 	"Manager.hpp"
 	"GameObject.hpp"
 	"TileGraphic.hpp"
@@ -108,11 +108,12 @@
 	<memory>
 	<string>
 
-1371752541 source:e:\users\david\documents\github\astarcpp\src\controller.cpp
+1373296815 source:e:\users\david\documents\github\astarcpp\src\controller.cpp
 	"Controller.hpp"
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
 	<iostream>
+	<assert.h>
 
 1372858100 source:e:\users\david\documents\github\astarcpp\src\tilegraphic.cpp
 	"TileGraphic.hpp"
@@ -131,11 +132,12 @@
 1365018207 source:e:\users\david\documents\github\astarcpp\src\time.cpp
 	"Time.hpp"
 
-1371230662 e:\users\david\documents\github\astarcpp\include\controller.hpp
+1373296013 e:\users\david\documents\github\astarcpp\include\controller.hpp
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
+	<functional>
 
-1372856442 source:e:\users\david\documents\github\astarcpp\src\pathfinder.cpp
+1373296014 source:e:\users\david\documents\github\astarcpp\src\pathfinder.cpp
 	"Pathfinder.hpp"
 	<list>
 	"TileManager.hpp"
@@ -169,13 +171,13 @@
 	<SFML/System.hpp>
 	<random>
 
-1372801830 e:\users\david\documents\github\astarcpp\include\scriptmanager.hpp
+1373296013 e:\users\david\documents\github\astarcpp\include\scriptmanager.hpp
 	"Manager.hpp"
 	<sstream>
 	<cstdio>
 	"LuaState.hpp"
 
-1372810421 source:e:\users\david\documents\github\astarcpp\src\scriptmanager.cpp
+1373296014 source:e:\users\david\documents\github\astarcpp\src\scriptmanager.cpp
 	"ScriptManager.hpp"
 	<SFML/System.hpp>
 	<assert.h>
@@ -198,16 +200,16 @@
 	<locale.h>
 	<map>
 
-1372791201 e:\users\david\documents\github\astarcpp\include\luastate.hpp
+1373296013 e:\users\david\documents\github\astarcpp\include\luastate.hpp
 	<iostream>
 	"lua.h"
 	"lualib.h"
 	"lauxlib.h"
 
-1372790326 source:e:\users\david\documents\github\astarcpp\src\luastate.cpp
+1373296014 source:e:\users\david\documents\github\astarcpp\src\luastate.cpp
 	"LuaState.hpp"
 
-1304372844 source:e:\users\david\documents\github\astarcpp\src\jsoncpp.cpp
+1373296014 source:e:\users\david\documents\github\astarcpp\src\jsoncpp.cpp
 	<json/json.h>
 	<json/reader.h>
 	<json/value.h>
@@ -243,7 +245,7 @@
 	<sstream>
 	<iomanip>
 
-1372893368 e:\users\david\documents\github\astarcpp\include\tiledworld.hpp
+1373296013 e:\users\david\documents\github\astarcpp\include\tiledworld.hpp
 	"GameObject.hpp"
 	<SFML/Graphics.hpp>
 	<string>
@@ -251,7 +253,7 @@
 	<map>
 	"TiledFile.hpp"
 
-1372977366 source:e:\users\david\documents\github\astarcpp\src\tiledworld.cpp
+1373296014 source:e:\users\david\documents\github\astarcpp\src\tiledworld.cpp
 	"TiledWorld.hpp"
 	<assert.h>
 	<json/json.h>
@@ -259,13 +261,13 @@
 	<fstream>
 	"UnitTest++.h"
 
-1372904908 e:\users\david\documents\github\astarcpp\include\tiledfile.hpp
+1373296013 e:\users\david\documents\github\astarcpp\include\tiledfile.hpp
 	<string>
 	<map>
 	<vector>
 	<json/json.h>
 
-1372966329 source:e:\users\david\documents\github\astarcpp\src\tiledfile.cpp
+1373296014 source:e:\users\david\documents\github\astarcpp\src\tiledfile.cpp
 	"TiledFile.hpp"
 	"UnitTest++.h"
 	<assert.h>
@@ -273,15 +275,18 @@
 	<cmath>
 	<algorithm>
 
-1372967769 source:e:\users\david\documents\github\astarcpp\src\cameracontroller.cpp
+1373298242 source:e:\users\david\documents\github\astarcpp\src\cameracontroller.cpp
 	"CameraController.hpp"
 	"Scene.hpp"
 	<math.h>
 	"Time.hpp"
 	"Controller.hpp"
+	<assert.h>
+	<functional>
 
-1372967670 e:\users\david\documents\github\astarcpp\include\cameracontroller.hpp
+1373298295 e:\users\david\documents\github\astarcpp\include\cameracontroller.hpp
 	"GameObject.hpp"
+	<SFML/Graphics.hpp>
 
 1373060346 source:c:\users\david\documents\github\astarcpp\main.cpp
 	<iostream>

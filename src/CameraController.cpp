@@ -26,6 +26,27 @@ CameraController::~CameraController()
 void CameraController::update()
 {
 
+    moveView();
+    rotateView();
+    zoomView();
+
+
+
+}
+void CameraController::rotateView()
+{
+
+    if(Controller::getKey(sf::Keyboard::Key::Z))
+    {
+        view_.rotate(rotateSpeed_ * Time::deltaTime);
+    }
+    if(Controller::getKey(sf::Keyboard::Key::X))
+    {
+        view_.rotate(-rotateSpeed_ * Time::deltaTime);
+    }
+}
+void CameraController::moveView()
+{
     sf::Vector2f dir(0.0f, 0.0f);
     if(Controller::getKey(sf::Keyboard::Key::D))
         dir.x += moveSpeed_;
@@ -47,6 +68,9 @@ void CameraController::update()
         view_.move(dir);
     }
 
+}
+void CameraController::zoomView()
+{
     if(Controller::getKey(sf::Keyboard::Key::Q))
     {
         view_.zoom(1.0f + zoomSpeed_ * Time::deltaTime);
@@ -56,10 +80,10 @@ void CameraController::update()
         view_.zoom(1.0f - zoomSpeed_ * Time::deltaTime);
     }
 
-
 }
 void CameraController::resizeHandler(const sf::Event & event)
 {
     assert(event.type == sf::Event::EventType::Resized);
-    std::cout << "resized event in the camera controller"<< std::endl;
+    sf::FloatRect visibleArea(view_.getCenter().x - view_.getSize().x /2, view_.getCenter().y - view_.getSize().y /2, event.size.width, event.size.height);
+    view_ = sf::View(visibleArea);
 }
